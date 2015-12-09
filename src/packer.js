@@ -31,6 +31,7 @@ export default (options = {}) => {
     // add current element to shortest column
 
     // update current column width
-    heights[target] += elementH
+    // add current element height, and gutter
+    heights[target] = heights[target] + elementH + options.gutter
   })
 }
