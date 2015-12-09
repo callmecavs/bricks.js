@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: black;
+      }
+
+      .container {
+        max-width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box" style="height: 100px;"></div>
+      <div class="box" style="height: 200px;"></div>
+      <div class="box" style="height: 500px;"></div>
+      <div class="box" style="height: 300px;"></div>
+      <div class="box" style="height: 400px;"></div>
+      <div class="box" style="height: 200px;"></div>
+      <div class="box" style="height: 100px;"></div>
+      <div class="box" style="height: 300px;"></div>
+      <div class="box" style="height: 400px;"></div>
+      <div class="box" style="height: 500px;"></div>
+      <div class="box" style="height: 100px;"></div>
+      <div class="box" style="height: 100px;"></div>
+      <div class="box" style="height: 200px;"></div>
+      <div class="box" style="height: 400px;"></div>
+      <div class="box" style="height: 300px;"></div>
+    </div>
+  </body>
+
+  <script src="packer.min.js"></script>
+  <script>
+    Packer({
+      container: '.container',
+      elements: '.box',
+      columns: 4,
+      gutter: 10
+      /* width: only required if your items are varying widths */
+    })
+  </script>
+</style>
