@@ -1,0 +1,40 @@
+{
+  "name":        "packer.js",
+  "version":     "0.0.1",
+  "description": "",
+  "homepage":    "",
+  "main":        "",
+
+  "author":  "",
+  "license": "",
+
+  "repository": {
+    "type": "git",
+    "url":  ""
+  },
+  "bugs": {
+    "url": ""
+  },
+
+  "keywords": [
+
+  ],
+
+  "devDependencies": {
+    "babel-core":                      "*",
+    "babel-preset-es2015":             "*",
+    "babel-plugin-add-module-exports": "*",
+    "babelify":                        "*",
+    "browserify":                      "*",
+    "gulp":                            "*",
+    "gulp-connect":                    "*",
+    "gulp-header":                     "*",
+    "gulp-sourcemaps":                 "*",
+    "gulp-uglify":                     "*",
+    "lodash.assign":                   "*",
+    "node-notifier":                   "*",
+    "vinyl-buffer":                    "*",
+    "vinyl-source-stream":             "*",
+    "watchify":                        "*"
+  }
+}
