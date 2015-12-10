@@ -20,9 +20,8 @@ export default (options = {}) => {
     let target = heights.indexOf(Math.min(...heights))
 
     // calculate transform for current element
-    let top = heights[target] === 0
-      ? heights[target]
-      : heights[target] + options.gutter
+    // TODO: adds gutter to even the top row
+    let top = heights[target] + options.gutter
 
     let left = (target * options.width) + (target * options.gutter)
 
