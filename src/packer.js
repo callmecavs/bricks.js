@@ -20,9 +20,7 @@ export default (options = {}) => {
     let target = heights.indexOf(Math.min(...heights))
 
     // calculate transform for current element
-    // TODO: adds gutter to even the top row
-    let top = heights[target] + options.gutter
-
+    let top = heights[target]
     let left = (target * options.width) + (target * options.gutter)
 
     element.style.position = 'absolute'
@@ -34,7 +32,7 @@ export default (options = {}) => {
 
   // set container height based on tallest column
   container.style.position = 'relative'
-  container.style.height = `${ Math.max(...heights) }px`
+  container.style.height = `${ Math.max(...heights) - options.gutter }px`
 
   console.timeEnd('Masonry')
 }
