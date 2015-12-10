@@ -7,29 +7,29 @@ export default (options = {}) => {
   const container = document.querySelector(options.container)
   const elements = toArray(options.elements)
 
-  // cache element heights
+  // batch element height calls, to avoid forced layouts
   const elHeights = elements.map(element => element.clientHeight)
 
   // initialize column heights
   let colHeights = times(options.columns, 0)
 
-  // go through the items
+  // run through the items
   elements.forEach((element, index) => {
-    // get shortest column index
+    // find index of shortest column
     let target = colHeights.indexOf(Math.min(...colHeights))
 
-    // calculate transform for current element
+    // apply element transform
     let top = colHeights[target]
     let left = (target * options.width) + (target * options.gutter)
 
     element.style.position = 'absolute'
     element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
 
-    // update current column height - add element height and gutter
-    colHeights[target] = colHeights[target] + elHeights[index] + options.gutter
+    // update current column height
+    colHeights[target] += elHeights[index] + options.gutter
   })
 
-  // set container height based on tallest column
+  // set container height
   container.style.position = 'relative'
   container.style.height = `${ Math.max(...colHeights) - options.gutter }px`
 
