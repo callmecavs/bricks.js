@@ -26,7 +26,7 @@ const onError = (error) => {
 
 const attribution = [
   '/*!',
-  ' * Packer.js <%= pkg.version %> - <%= pkg.description %>',
+  ' * Bricks.js <%= pkg.version %> - <%= pkg.description %>',
   ' * Copyright (c) ' + new Date().getFullYear() + ' <%= pkg.author %> - <%= pkg.homepage %>',
   ' * License: <%= pkg.license %>',
   ' */'
@@ -36,8 +36,8 @@ const attribution = [
 
 const browserifyArgs = {
   debug: true,
-  entries: 'src/packer.js',
-  standalone: 'Packer'
+  entries: 'src/bricks.js',
+  standalone: 'Bricks'
 }
 
 const watchifyArgs = assign(watchify.args, browserifyArgs)
@@ -55,7 +55,7 @@ const build = () => {
     .bundle()
     .on('error', onError)
     .on('end', () => console.timeEnd('Bundling finished'))
-    .pipe(source('packer.min.js'))
+    .pipe(source('bricks.min.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(header(attribution, { pkg: packageJSON }))

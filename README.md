@@ -1,1 +1,1 @@
-# Packer.js
+# Bricks.js
