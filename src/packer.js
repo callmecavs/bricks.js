@@ -5,7 +5,8 @@ export default (options = {}) => {
   const container = document.querySelector(options.container)
   const elements = toArray(options.elements)
 
-  // batch element height calls, to avoid forced layouts
+  // batch width and height calls, to avoid forced layouts
+  const containerWidth = container.clientWidth
   const elHeights = elements.map(element => element.clientHeight)
 
   // initialize column heights
@@ -27,7 +28,8 @@ export default (options = {}) => {
     colHeights[target] += elHeights[index] + options.gutter
   })
 
-  // set container height
+  // set container width and height
   container.style.position = 'relative'
+  container.style.width = `${ containerWidth + (options.gutter * (options.columns - 1)) }px`
   container.style.height = `${ Math.max(...colHeights) - options.gutter }px`
 }
