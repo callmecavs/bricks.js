@@ -11,6 +11,7 @@ Bricks was developed with a modern JavaScript workflow in mind. To use it, it's 
 Follow these steps to get started:
 
 * [Install](#install)
+* [Call](#call)
 
 ### Install
 
@@ -19,3 +20,25 @@ Using NPM, install Bricks.js, and add it to your package.json dependencies.
 ```
 $ npm install bricks.js --save
 ```
+
+### Call
+
+Import Bricks, then call it.
+
+```es6
+// import Bricks
+import bricks from 'bricks.js'
+
+// call Bricks
+bricks('.container', '.grid-item', 4, 10, 200)
+```
+
+Explanation of each parameter follows.
+
+#### Parameters
+
+* `container` - A CSS selector (string) that matches the element holding the grid items.
+* `elements` - A CSS selector (string) that matches the grid items.
+* `columns` - Number of desired columns in the grid.
+* `gutter` - Number of pixels between each column, and below each grid item.
+* `width` - Width of each grid item.
