@@ -12,6 +12,7 @@ Follow these steps to get started:
 
 * [Install](#install)
 * [Call](#call)
+  * [Parameters](#parameters)
 
 ### Install
 
