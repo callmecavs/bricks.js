@@ -1,23 +1,26 @@
 {
   "name":        "bricks.js",
   "version":     "0.0.1",
-  "description": "",
-  "homepage":    "",
-  "main":        "",
+  "description": "A blazing fast grid layout generator for fixed width elements.",
+  "homepage":    "https://github.com/callmecavs/bricks.js",
+  "main":        "dist/bricks.min.js",
 
-  "author":  "",
-  "license": "",
+  "author":  "Michael Cavalea",
+  "license": "MIT",
 
   "repository": {
     "type": "git",
-    "url":  ""
+    "url":  "https://github.com/callmecavs/bricks.js"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/callmecavs/bricks.js/issues"
   },
 
   "keywords": [
-
+    "grid",
+    "masonry",
+    "layout",
+    "packing"
   ],
 
   "devDependencies": {
