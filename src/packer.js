@@ -24,9 +24,7 @@ export default (options = {}) => {
       ? heights[target]
       : heights[target] + options.gutter
 
-    let left = target === 0
-      ? target * options.width
-      : (target * options.width) + (target * options.gutter)
+    let left = (target * options.width) + (target * options.gutter)
 
     element.style.position = 'absolute'
     element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
