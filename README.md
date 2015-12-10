@@ -1,8 +1,8 @@
 # Bricks.js
 
-A blazing fast grid layout generator for fixed width elements.
+> Momma said, "Stay patient." - Bricks, DJ Carnage
 
-> Started with a hundred bricks. Now I sold out, bitch. - DJ Carnage
+But you don't need to, because Bricks is **a blazing fast grid layout generator for fixed width elements**.
 
 ## Usage
 
