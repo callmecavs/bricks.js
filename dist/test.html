@@ -28,10 +28,10 @@
     var container = document.querySelector('.container')
 
     // generate a bunch of divs, with random heights
-    for(var i = 0; i < 1000; i++) {
+    for(var i = 0; i < 100; i++) {
       var div = document.createElement('div')
       div.classList.add('box')
-      div.style.height = Math.floor(Math.random() * 600)
+      div.style.height = Math.floor(Math.random() * 500)
       container.appendChild(div)
     }
 
@@ -43,7 +43,6 @@
       columns: 4,
       gutter: 10,
       width: 200
-      /* width: only required if your items are varying widths */
     })
     console.timeEnd('Packer')
   </script>
