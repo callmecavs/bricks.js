@@ -38,13 +38,15 @@
 
   <script src="packer.min.js"></script>
   <script>
-    Packer({
-      container: '.container',
-      elements: '.box',
-      columns: 4,
-      gutter: 10,
-      width: 200
-      /* width: only required if your items are varying widths */
-    })
+    setTimeout(function() {
+      Packer({
+        container: '.container',
+        elements: '.box',
+        columns: 4,
+        gutter: 10,
+        width: 200
+        /* width: only required if your items are varying widths */
+      })
+    }, 5000)
   </script>
 </style>

@@ -13,6 +13,8 @@ const times = (number, result) => {
 }
 
 export default (options = {}) => {
+  console.time('Masonry')
+
   // cache elements and container
   const container = document.querySelector(options.container)
   const elements = toArray(options.elements)
@@ -23,12 +25,13 @@ export default (options = {}) => {
   // go through the items
   elements.forEach(element => {
     // get height
+    // TODO: batch calls to get all element heights, separate loop
     let elementH = element.clientHeight
 
     // get shortest column index
     let target = heights.indexOf(Math.min(...heights))
 
-    // add current element to it
+    // calculate transform for current element
     let top = heights[target] === 0
       ? heights[target]
       : heights[target] + options.gutter
@@ -40,11 +43,13 @@ export default (options = {}) => {
     element.style.position = 'absolute'
     element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
 
-    // update current column width - add element height and gutter
+    // update current column height - add element height and gutter
     heights[target] = heights[target] + elementH + options.gutter
   })
 
   // set container height based on tallest column
   container.style.position = 'relative'
   container.style.height = `${ Math.max(...heights) }px`
+
+  console.timeEnd('Masonry')
 }
