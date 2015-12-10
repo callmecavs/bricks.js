@@ -1,8 +1,6 @@
 import { toArray, times } from './util'
 
 export default (options = {}) => {
-  console.time('Masonry')
-
   // cache elements and container
   const container = document.querySelector(options.container)
   const elements = toArray(options.elements)
@@ -32,6 +30,4 @@ export default (options = {}) => {
   // set container height
   container.style.position = 'relative'
   container.style.height = `${ Math.max(...colHeights) - options.gutter }px`
-
-  console.timeEnd('Masonry')
 }
