@@ -19,36 +19,32 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="box" style="height: 100px;"></div>
-      <div class="box" style="height: 200px;"></div>
-      <div class="box" style="height: 500px;"></div>
-      <div class="box" style="height: 300px;"></div>
-      <div class="box" style="height: 400px;"></div>
-      <div class="box" style="height: 200px;"></div>
-      <div class="box" style="height: 100px;"></div>
-      <div class="box" style="height: 300px;"></div>
-      <div class="box" style="height: 400px;"></div>
-      <div class="box" style="height: 500px;"></div>
-      <div class="box" style="height: 100px;"></div>
-      <div class="box" style="height: 100px;"></div>
-      <div class="box" style="height: 200px;"></div>
-      <div class="box" style="height: 400px;"></div>
-      <div class="box" style="height: 300px;"></div>
-    </div>
+    <div class="container"></div>
   </body>
 
   <script src="packer.min.js"></script>
   <script>
-    setTimeout(function() {
-      Packer({
-        container: '.container',
-        elements: '.box',
-        columns: 4,
-        gutter: 10,
-        width: 200
-        /* width: only required if your items are varying widths */
-      })
-    }, 5000)
+    // stress test
+    var container = document.querySelector('.container')
+
+    // generate a bunch of divs, with random heights
+    for(var i = 0; i < 1000; i++) {
+      var div = document.createElement('div')
+      div.classList.add('box')
+      div.style.height = Math.floor(Math.random() * 600)
+      container.appendChild(div)
+    }
+
+    // run packer
+    console.time('Packer')
+    Packer({
+      container: '.container',
+      elements: '.box',
+      columns: 4,
+      gutter: 10,
+      width: 200
+      /* width: only required if your items are varying widths */
+    })
+    console.timeEnd('Packer')
   </script>
 </style>
