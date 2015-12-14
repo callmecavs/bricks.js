@@ -23,6 +23,10 @@
     "packing"
   ],
 
+  "dependencies": {
+    "knot.js": "*"
+  },
+
   "devDependencies": {
     "babel-core":                      "*",
     "babel-preset-es2015":             "*",

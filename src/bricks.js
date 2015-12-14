@@ -1,5 +1,7 @@
 import { toArray, times } from './util'
 
+import knot from 'knot.js'
+
 export default (options = {}) => {
   // cache elements and container
   const container = document.querySelector(options.container)
