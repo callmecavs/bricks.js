@@ -38,12 +38,14 @@
 
     // run packer
     console.time('Packer')
-    Bricks({
+    var bricks = Bricks({
       container: '.container',
-      elements: '.box',
-      columns: 4,
-      gutter: 10,
-      width: 200
+      packed: 'packed',
+      breaks: [
+        { mq: '', columns: 2, gutter: 10, width: 200 },
+        { mq: '(min-width: 768px)', columns: 3, gutter: 10, width: 250 },
+        { mq: '(min-width: 1024px)', columns: 4, gutter: 25, width: 300 }
+      ]
     })
     console.timeEnd('Packer')
   </script>
