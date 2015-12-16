@@ -3,22 +3,15 @@ import { times } from './util'
 import knot from 'knot.js'
 
 export default (options = {}) => {
+  const container = document.querySelector(options.container)
   const packedAttr = `data-${ options.packed }`
 
-  const selectors = {
-    container: options.container,
-    elements: {
-      all:    `${ options.container } > *`,
-      recent: `${ options.container } > *:not([${ packedAttr }])`
-    }
-  }
-
-  function getContainer() {
-    return document.querySelector(selectors.container)
+  const elements = {
+    all:    `${ options.container } > *`,
+    recent: `${ options.container } > *:not([${ packedAttr }])`
   }
 
   function getElements(recent = false) {
-    let elements = selectors.elements
     return [...document.querySelectorAll(recent ? elements.recent : elements.new)]
   }
 }
