@@ -3,14 +3,16 @@ import { times } from './util'
 import knot from 'knot.js'
 
 export default (options = {}) => {
+  let size
   let heights
 
   const container = document.querySelector(options.container)
-  const packedAttr = `data-${ options.packed }`
+  const packed    = `data-${ options.packed }`
+  const sizes     = options.sizes.reverse()
 
   const elements = {
     all:    `${ options.container } > *`,
-    recent: `${ options.container } > *:not([${ packedAttr }])`
+    recent: `${ options.container } > *:not([${ packed }])`
   }
 
   function getElements(recent = false) {
@@ -19,6 +21,18 @@ export default (options = {}) => {
 
   function getHeights(elements) {
     return heights = elements.map(element => element.clientHeight)
+  }
+
+  function getSize() {
+    // get widest matching media query
+    let match = sizes
+      .map(size => size.mq && window.matchMedia(size.mq).matches)
+      .indexOf(true)
+
+    // if none match, use the narrowest media query
+    return size = match === -1
+      ? sizes[sizes.length - 1]
+      : sizes[match]
   }
 }
 
