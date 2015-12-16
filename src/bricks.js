@@ -12,17 +12,12 @@ export default (options = {}) => {
   }
 
   function getElements(recent = false) {
-    return [...document.querySelectorAll(recent ? elements.recent : elements.new)]
+    return [...document.querySelectorAll(recent ? elements.recent : elements.all)]
   }
 }
 
 // export default (options = {}) => {
-//   // cache elements and container
-//   const container = document.querySelector(options.container)
-//   const elements = toArray(options.elements)
-
 //   // batch width and height calls, to avoid forced layouts
-//   const containerWidth = container.clientWidth
 //   const elHeights = elements.map(element => element.clientHeight)
 
 //   // initialize column heights
@@ -46,6 +41,6 @@ export default (options = {}) => {
 
 //   // set container width and height
 //   container.style.position = 'relative'
-//   container.style.width = `${ containerWidth + (options.gutter * (options.columns - 1)) }px`
+//   container.style.width = `${ /* calculate this by column width */ + (options.gutter * (options.columns - 1)) }px`
 //   container.style.height = `${ Math.max(...colHeights) - options.gutter }px`
 // }
