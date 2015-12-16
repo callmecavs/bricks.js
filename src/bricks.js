@@ -3,6 +3,8 @@ import { times } from './util'
 import knot from 'knot.js'
 
 export default (options = {}) => {
+  let heights
+
   const container = document.querySelector(options.container)
   const packedAttr = `data-${ options.packed }`
 
@@ -13,6 +15,10 @@ export default (options = {}) => {
 
   function getElements(recent = false) {
     return [...document.querySelectorAll(recent ? elements.recent : elements.all)]
+  }
+
+  function getHeights(elements) {
+    return heights = elements.map(element => element.clientHeight)
   }
 }
 
