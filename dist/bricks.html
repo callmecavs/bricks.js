@@ -6,9 +6,7 @@
       }
 
       .box {
-
         width: 200px;
-        height: 200px;
         background-color: black;
       }
 
@@ -27,11 +25,18 @@
     // stress test
     var container = document.querySelector('.container')
 
-    // generate a bunch of divs, with random heights
+    // generate a bunch of divs, with random height children
     for(var i = 0; i < 100; i++) {
       var div = document.createElement('div')
       div.classList.add('box')
-      div.style.height = Math.floor(Math.random() * 500)
+
+      // add 5 randomly sized children
+      for(var j = 0; j < 5; j++) {
+        var inner = document.createElement('div')
+        inner.style.height = Math.floor(Math.random() * 100)
+        div.appendChild(inner)
+      }
+
       container.appendChild(div)
     }
 
