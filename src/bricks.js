@@ -23,16 +23,18 @@ export default (options = {}) => {
     return heights = elements.map(element => element.clientHeight)
   }
 
-  function getSize() {
+  function getSizeIndex() {
     // get widest matching media query
-    let match = sizes
+    size = sizes
       .map(size => size.mq && window.matchMedia(size.mq).matches)
       .indexOf(true)
+  }
 
+  function getSize() {
     // if none match, use the narrowest media query
-    return size = match === -1
+    return size === -1
       ? sizes[sizes.length - 1]
-      : sizes[match]
+      : sizes[size]
   }
 }
 
