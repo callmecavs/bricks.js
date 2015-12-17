@@ -6,7 +6,8 @@ export default (options = {}) => {
   let size        // current size index
   let columns     // current columns heights
 
-  // options handling
+  // OPTIONS HANDLING
+
   const container = document.querySelector(options.container)
   const packed    = `data-${ options.packed }`
   const sizes     = options.sizes.reverse()
@@ -16,7 +17,8 @@ export default (options = {}) => {
     recent: `${ options.container } > *:not([${ packed }])`
   }
 
-  // create and return emitter instance
+  // INSTANCE
+
   const instance = knot({
     pack: pack,
     update: update,
@@ -25,7 +27,8 @@ export default (options = {}) => {
 
   return instance
 
-  // element helpers
+  // ELEMENT HELPERS
+
   function getElements(recent = false) {
     return [...document.querySelectorAll(recent ? elements.recent : elements.all)]
   }
@@ -48,6 +51,8 @@ export default (options = {}) => {
       element.style.position = 'absolute'
       element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
 
+      element.setAttribute(packed, '')
+
       columns[target] += heights[index] + details.gutter
     })
   }
@@ -60,12 +65,14 @@ export default (options = {}) => {
     container.style.height = `${ Math.max(...columns) - details.gutter }px`
   }
 
-  // column helpers
+  // COLUMN HELPERS
+
   function resetColumns() {
     columns = times(getSizeDetails().columns, 0)
   }
 
-  // size helpers
+  // SIZE HELPERS
+
   function getSize() {
     // find index of widest matching media query
     return sizes
@@ -88,7 +95,8 @@ export default (options = {}) => {
       : sizes[size]
   }
 
-  // public api
+  // API
+
   function pack() {
     ;[setSize, resetColumns, setElements, setContainer].forEach(func => func())
     return instance.emit('pack')
