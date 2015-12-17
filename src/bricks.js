@@ -3,9 +3,10 @@ import { times } from './util'
 import knot from 'knot.js'
 
 export default (options = {}) => {
-  let size
-  let heights
+  let size        // current size index
+  let columns     // current columns heights
 
+  // options handling
   const container = document.querySelector(options.container)
   const packed    = `data-${ options.packed }`
   const sizes     = options.sizes.reverse()
@@ -15,21 +16,25 @@ export default (options = {}) => {
     recent: `${ options.container } > *:not([${ packed }])`
   }
 
+  // create and return emitter instance
   const instance = knot({
     pack: pack,
+    update: update,
     resize: resize
   })
 
   return instance
 
+  // element helpers
   function getElements(recent = false) {
     return [...document.querySelectorAll(recent ? elements.recent : elements.all)]
   }
 
   function getHeights(elements) {
-    return heights = elements.map(element => element.clientHeight)
+    return elements.map(element => element.clientHeight)
   }
 
+  // size helpers
   function getSizeIndex() {
     // get widest matching media query
     size = sizes
@@ -44,8 +49,17 @@ export default (options = {}) => {
       : sizes[size]
   }
 
+  // public api
   function pack() {
+    // ...
 
+    instance.emit('pack')
+  }
+
+  function update() {
+    // ...
+
+    instance.emit('update')
   }
 
   function resize() {
@@ -57,6 +71,8 @@ export default (options = {}) => {
     }
 
     function stop() {
+      // ...
+
       instance.emit('resize')
     }
 
