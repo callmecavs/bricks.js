@@ -13,7 +13,6 @@
       }
 
       .container {
-        width: 800px;
         margin-right: auto;
         margin-left: auto;
       }
@@ -44,12 +43,14 @@
       packed: 'packed',
       sizes: [
         { columns: 2, gutter: 10, width: 200 },
-        { mq: '(min-width: 768px)', columns: 3, gutter: 10, width: 250 },
-        { mq: '(min-width: 1024px)', columns: 4, gutter: 25, width: 300 }
+        { mq: '(min-width: 768px)', columns: 3, gutter: 25, width: 200 },
+        { mq: '(min-width: 1024px)', columns: 4, gutter: 50, width: 200 }
       ]
     })
-    .resize()
     .on('resize', function() { console.log('resized') })
+    .on('pack', function() { console.log('packed') })
+    .pack()
+    .resize()
 
     console.timeEnd('Packer')
   </script>

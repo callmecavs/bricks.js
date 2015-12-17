@@ -34,6 +34,37 @@ export default (options = {}) => {
     return elements.map(element => element.clientHeight)
   }
 
+  function setElements() {
+    let elements = getElements()
+    let heights = getHeights(elements)
+    let details = getSizeDetails()
+
+    elements.forEach((element, index) => {
+      let target = columns.indexOf(Math.min(...columns))
+
+      let top = columns[target]
+      let left = (target * details.width) + (target * details.gutter)
+
+      element.style.position = 'absolute'
+      element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
+
+      columns[target] += heights[index] + details.gutter
+    })
+  }
+
+  function setContainer() {
+    let details = getSizeDetails()
+
+    container.style.position = 'relative'
+    container.style.width = `${ (details.columns * details.width) + ((details.columns - 1) * details.gutter) }px`
+    container.style.height = `${ Math.max(...columns) - details.gutter }px`
+  }
+
+  // column helpers
+  function resetColumns() {
+    columns = times(getSizeDetails().columns, 0)
+  }
+
   // size helpers
   function getSize() {
     // find index of widest matching media query
@@ -59,15 +90,14 @@ export default (options = {}) => {
 
   // public api
   function pack() {
-    // ...
-
-    instance.emit('pack')
+    ;[setSize, resetColumns, setElements, setContainer].forEach(func => func())
+    return instance.emit('pack')
   }
 
   function update() {
     // ...
 
-    instance.emit('update')
+    return instance.emit('update')
   }
 
   function resize() {
@@ -88,32 +118,3 @@ export default (options = {}) => {
     return instance
   }
 }
-
-// export default (options = {}) => {
-//   // batch width and height calls, to avoid forced layouts
-//   const elHeights = elements.map(element => element.clientHeight)
-
-//   // initialize column heights
-//   let colHeights = times(options.columns, 0)
-
-//   // run through the items
-//   elements.forEach((element, index) => {
-//     // find index of shortest column
-//     let target = colHeights.indexOf(Math.min(...colHeights))
-
-//     // apply element transform
-//     let top = colHeights[target]
-//     let left = (target * options.width) + (target * options.gutter)
-
-//     element.style.position = 'absolute'
-//     element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
-
-//     // update current column height
-//     colHeights[target] += elHeights[index] + options.gutter
-//   })
-
-//   // set container width and height
-//   container.style.position = 'relative'
-//   container.style.width = `${ /* calculate this by column width */ + (options.gutter * (options.columns - 1)) }px`
-//   container.style.height = `${ Math.max(...colHeights) - options.gutter }px`
-// }
