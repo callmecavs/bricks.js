@@ -35,15 +35,23 @@ export default (options = {}) => {
   }
 
   // size helpers
-  function getSizeIndex() {
-    // get widest matching media query
-    size = sizes
+  function getSize() {
+    // find index of widest matching media query
+    return sizes
       .map(size => size.mq && window.matchMedia(size.mq).matches)
       .indexOf(true)
   }
 
-  function getSize() {
-    // if none match, use the narrowest media query
+  function setSize() {
+    size = getSize()
+  }
+
+  function checkSize() {
+    return size !== getSize()
+  }
+
+  function getSizeDetails() {
+    // if no media queries matched, use the base case
     return size === -1
       ? sizes[sizes.length - 1]
       : sizes[size]
@@ -71,7 +79,9 @@ export default (options = {}) => {
     }
 
     function stop() {
-      // ...
+      // if size is new -> pack
+      // otherwise -> update
+
 
       instance.emit('resize')
     }
