@@ -79,10 +79,7 @@ export default (options = {}) => {
     }
 
     function stop() {
-      // if size is new -> pack
-      // otherwise -> update
-
-
+      checkSize() && pack()
       instance.emit('resize')
     }
 
