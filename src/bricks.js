@@ -36,6 +36,21 @@ export default (options = {}) => {
       ? sizes[sizes.length - 1]
       : sizes[size]
   }
+
+  function resize() {
+    let timer
+
+    function active() {
+      timer !== undefined && clearTimeout(timer)
+      timer = setTimeout(() => stop(), 250)
+    }
+
+    function stop() {
+
+    }
+
+    window.addEventListener('resize', () => active())
+  }
 }
 
 // export default (options = {}) => {
