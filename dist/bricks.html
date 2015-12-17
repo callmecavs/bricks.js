@@ -38,6 +38,7 @@
 
     // run packer
     console.time('Packer')
+
     var bricks = Bricks({
       container: '.container',
       packed: 'packed',
@@ -47,6 +48,9 @@
         { mq: '(min-width: 1024px)', columns: 4, gutter: 25, width: 300 }
       ]
     })
+    .resize()
+    .on('resize', function() { console.log('resized') })
+
     console.timeEnd('Packer')
   </script>
 </style>

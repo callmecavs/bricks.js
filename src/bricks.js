@@ -15,6 +15,13 @@ export default (options = {}) => {
     recent: `${ options.container } > *:not([${ packed }])`
   }
 
+  const instance = knot({
+    pack: pack,
+    resize: resize
+  })
+
+  return instance
+
   function getElements(recent = false) {
     return [...document.querySelectorAll(recent ? elements.recent : elements.all)]
   }
@@ -37,6 +44,10 @@ export default (options = {}) => {
       : sizes[size]
   }
 
+  function pack() {
+
+  }
+
   function resize() {
     let timer
 
@@ -46,10 +57,12 @@ export default (options = {}) => {
     }
 
     function stop() {
-
+      instance.emit('resize')
     }
 
     window.addEventListener('resize', () => active())
+
+    return instance
   }
 }
 
