@@ -36,8 +36,6 @@
     }
 
     // run packer
-    console.time('Packer')
-
     var bricks = Bricks({
       container: '.container',
       packed: 'packed',
@@ -49,9 +47,12 @@
     })
     .on('resize', function() { console.log('resized') })
     .on('pack', function() { console.log('packed') })
-    .pack()
-    .resize()
 
-    console.timeEnd('Packer')
+    setTimeout(function() {
+      console.time('Packing')
+      bricks.pack()
+      console.timeEnd('Packing')
+      bricks.resize()
+    }, 3000)
   </script>
 </style>
