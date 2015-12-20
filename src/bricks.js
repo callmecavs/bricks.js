@@ -109,19 +109,25 @@ export default (options = {}) => {
   }
 
   function resize() {
-    let timer
+    let ticking = false
 
-    function active() {
-      timer !== undefined && clearTimeout(timer)
-      timer = setTimeout(() => stop(), 250)
+    function requestFrame() {
+      if(!ticking) {
+        requestAnimationFrame(() => update())
+        ticking = true
+      }
     }
 
-    function stop() {
-      checkSize() && pack()
-      instance.emit('resize')
+    function update() {
+      if(checkSize()) {
+        pack()
+        instance.emit('resize')
+      }
+
+      ticking = false
     }
 
-    window.addEventListener('resize', () => active())
+    window.addEventListener('resize', () => requestFrame())
 
     return instance
   }
