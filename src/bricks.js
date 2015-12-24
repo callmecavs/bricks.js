@@ -1,5 +1,3 @@
-import { times } from './util'
-
 import knot from 'knot.js'
 
 export default (options = {}) => {
@@ -68,7 +66,11 @@ export default (options = {}) => {
   // COLUMN HELPERS
 
   function resetColumns() {
-    columns = times(getSizeDetails().columns, 0)
+    columns = fillArray(getSizeDetails().columns, 0)
+  }
+
+  function fillArray(length, value) {
+    return Array.apply(null, Array(length)).map(() => value)
   }
 
   // SIZE HELPERS
