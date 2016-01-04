@@ -53,17 +53,15 @@ export default (options = {}) => {
   }
 
   // container helpers
+
+  function setContainerStyles() {
+    container.style.position = 'relative'
+    container.style.width = `#{ details.columns * details.width + (details.column - 1) * details.gutter }px`
+    container.style.height = `${ Math.max(...columns) - details.gutter }px`
+  }
 }
 
 // export default (options = {}) => {
-//
-//   function setContainer() {
-//     let details = getSizeDetails()
-//
-//     container.style.position = 'relative'
-//     container.style.width = `${ (details.columns * details.width) + ((details.columns - 1) * details.gutter) }px`
-//     container.style.height = `${ Math.max(...columns) - details.gutter }px`
-//   }
 //
 //   // COLUMN HELPERS
 //
