@@ -36,11 +36,11 @@ export default (options = {}) => {
 
   // element helpers
 
-  function getElements(recent = false) {
+  function setElements(recent = false) {
     elements = [...document.querySelectorAll(recent ? selectors.recent : selectors.all)]
   }
 
-  function getElementHeights() {
+  function setElementHeights() {
     heights = elements.map(element => element.clientHeight)
   }
 
@@ -105,8 +105,8 @@ export default (options = {}) => {
       setSizeIndex,
       setSizeDetails,
       resetColumns,
-      getElements,
-      getElementHeights,
+      setElements,
+      setElementHeights,
       setElementStyles,
       setContainerStyles
     ]
