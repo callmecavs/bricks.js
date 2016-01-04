@@ -21,7 +21,8 @@ export default (options = {}) => {
   // instance
 
   const instance = knot({
-    pack: pack
+    pack: pack,
+    resize: resize
   })
 
   return instance
@@ -112,44 +113,39 @@ export default (options = {}) => {
     actions.forEach(action => action())
     return instance.emit('pack')
   }
+
+  function resize() {
+    let ticking
+
+    function requestFrame() {
+      if(!ticking) {
+        requestAnimationFrame(() => handle())
+        ticking = true
+      }
+    }
+
+    function handle() {
+      if(checkSizeIndex()) {
+        pack()
+        instance.emit('resize')
+      }
+
+      ticking = false
+    }
+
+    window.addEventListener('resize', () => requestFrame())
+
+    return instance
+  }
 }
 
 // export default (options = {}) => {
 //
 //   // API
 //
-//   function pack() {
-//     ;[setSize, resetColumns, setElements, setContainer].forEach(func => func())
-//     return instance.emit('pack')
-//   }
-//
 //   function update() {
 //     // ...
 //
 //     return instance.emit('update')
-//   }
-//
-//   function resize() {
-//     let ticking = false
-//
-//     function requestFrame() {
-//       if(!ticking) {
-//         requestAnimationFrame(() => update())
-//         ticking = true
-//       }
-//     }
-//
-//     function update() {
-//       if(checkSize()) {
-//         pack()
-//         instance.emit('resize')
-//       }
-//
-//       ticking = false
-//     }
-//
-//     window.addEventListener('resize', () => requestFrame())
-//
-//     return instance
 //   }
 // }
