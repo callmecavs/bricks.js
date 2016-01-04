@@ -26,62 +26,36 @@ export default (options = {}) => {
 
   return instance
 
+  // element helpers
+
+  function getElements(recent = false) {
+    elements = [...document.querySelectorAll(recent ? selectors.recent : selectors.all)]
+  }
+
+  function getElementHeights() {
+    return elements.map(element => element.clientHeight)
+  }
+
+  function setElementStyles() {
+    elements.forEach((element, index) => {
+      let target = columns.indexOf(Math.min(...columns))
+
+      let top = columns[target]
+      let left = (target * details.width) + (target * details.gutter)
+
+      element.style.position = 'absolute'
+      element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
+
+      element.setAttribute(packed, '')
+
+      columns[target] += heights[index] + details.gutter
+    })
+  }
+
+  // container helpers
 }
 
 // export default (options = {}) => {
-//   let size        // current size index
-//   let columns     // current columns heights
-//
-//   // OPTIONS HANDLING
-//
-//   const container = document.querySelector(options.container)
-//   const packed    = `data-${ options.packed }`
-//   const sizes     = options.sizes.reverse()
-//
-//   const elements = {
-//     all:    `${ options.container } > *`,
-//     recent: `${ options.container } > *:not([${ packed }])`
-//   }
-//
-//   // INSTANCE
-//
-//   const instance = knot({
-//     pack: pack,
-//     update: update,
-//     resize: resize
-//   })
-//
-//   return instance
-//
-//   // ELEMENT HELPERS
-//
-//   function getElements(recent = false) {
-//     return [...document.querySelectorAll(recent ? elements.recent : elements.all)]
-//   }
-//
-//   function getHeights(elements) {
-//     return elements.map(element => element.clientHeight)
-//   }
-//
-//   function setElements() {
-//     let elements = getElements()
-//     let heights = getHeights(elements)
-//     let details = getSizeDetails()
-//
-//     elements.forEach((element, index) => {
-//       let target = columns.indexOf(Math.min(...columns))
-//
-//       let top = columns[target]
-//       let left = (target * details.width) + (target * details.gutter)
-//
-//       element.style.position = 'absolute'
-//       element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
-//
-//       element.setAttribute(packed, '')
-//
-//       columns[target] += heights[index] + details.gutter
-//     })
-//   }
 //
 //   function setContainer() {
 //     let details = getSizeDetails()
