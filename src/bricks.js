@@ -21,7 +21,7 @@ export default (options = {}) => {
   // instance
 
   const instance = knot({
-
+    pack: pack
   })
 
   return instance
@@ -39,7 +39,7 @@ export default (options = {}) => {
   }
 
   function getElementHeights() {
-    return elements.map(element => element.clientHeight)
+    heights = elements.map(element => element.clientHeight)
   }
 
   function setElementStyles() {
@@ -62,7 +62,7 @@ export default (options = {}) => {
 
   function setContainerStyles() {
     container.style.position = 'relative'
-    container.style.width = `#{ details.columns * details.width + (details.column - 1) * details.gutter }px`
+    container.style.width = `${ details.columns * details.width + (details.columns - 1) * details.gutter }px`
     container.style.height = `${ Math.max(...columns) - details.gutter }px`
   }
 
@@ -91,9 +91,26 @@ export default (options = {}) => {
 
   function setSizeDetails() {
     // if no media queries matched, use the base case
-    return size === -1
+    details = size === -1
       ? sizes[sizes.length - 1]
       : sizes[size]
+  }
+
+  // API
+
+  function pack() {
+    const actions = [
+      setSizeIndex,
+      setSizeDetails,
+      resetColumns,
+      getElements,
+      getElementHeights,
+      setElementStyles,
+      setContainerStyles
+    ]
+
+    actions.forEach(action => action())
+    return instance.emit('pack')
   }
 }
 
