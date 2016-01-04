@@ -22,6 +22,7 @@ export default (options = {}) => {
 
   const instance = knot({
     pack: pack,
+    update: update,
     resize: resize
   })
 
@@ -114,6 +115,12 @@ export default (options = {}) => {
     return instance.emit('pack')
   }
 
+  function update() {
+    // ...
+
+    return instance.emit('update')
+  }
+
   function resize() {
     let ticking
 
@@ -138,14 +145,3 @@ export default (options = {}) => {
     return instance
   }
 }
-
-// export default (options = {}) => {
-//
-//   // API
-//
-//   function update() {
-//     // ...
-//
-//     return instance.emit('update')
-//   }
-// }
