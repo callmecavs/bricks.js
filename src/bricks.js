@@ -26,6 +26,12 @@ export default (options = {}) => {
 
   return instance
 
+  // general helpers
+
+  function fillArray(length, value) {
+    return Array.apply(null, Array(length)).map(() => value)
+  }
+
   // element helpers
 
   function getElements(recent = false) {
@@ -59,19 +65,16 @@ export default (options = {}) => {
     container.style.width = `#{ details.columns * details.width + (details.column - 1) * details.gutter }px`
     container.style.height = `${ Math.max(...columns) - details.gutter }px`
   }
+
+  // column helpers
+
+  function resetColumns() {
+    columns = fillArray(details.columns, 0)
+  }
+
 }
 
 // export default (options = {}) => {
-//
-//   // COLUMN HELPERS
-//
-//   function resetColumns() {
-//     columns = fillArray(getSizeDetails().columns, 0)
-//   }
-//
-//   function fillArray(length, value) {
-//     return Array.apply(null, Array(length)).map(() => value)
-//   }
 //
 //   // SIZE HELPERS
 //
