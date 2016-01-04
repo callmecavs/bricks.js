@@ -1,6 +1,30 @@
 import knot from 'knot.js'
 
 export default (options = {}) => {
+  let elements      // elements
+  let heights       // element heights
+  let columns       // column heights
+  let size          // size index
+  let details       // size details
+
+  // options
+
+  const container = document.querySelector(options.container)
+  const packed    = `data-${ options.packed }`
+  const sizes     = options.sizes.reverse()
+
+  const selectors = {
+    all:    `${ options.container } > *`,
+    recent: `${ options.container } > *:not([${ packed }])`
+  }
+
+  // instance
+
+  const instance = knot({
+
+  })
+
+  return instance
 
 }
 
