@@ -72,33 +72,32 @@ export default (options = {}) => {
     columns = fillArray(details.columns, 0)
   }
 
+  // size helpers
+
+  function getSizeIndex() {
+    // find index of widest matching media query
+    return sizes
+      .map(size => size.mq && window.matchMedia(size.mq).matches)
+      .indexOf(true)
+  }
+
+  function setSizeIndex() {
+    size = getSizeIndex()
+  }
+
+  function checkSizeIndex() {
+    return size !== getSizeIndex()
+  }
+
+  function setSizeDetails() {
+    // if no media queries matched, use the base case
+    return size === -1
+      ? sizes[sizes.length - 1]
+      : sizes[size]
+  }
 }
 
 // export default (options = {}) => {
-//
-//   // SIZE HELPERS
-//
-//   function getSize() {
-//     // find index of widest matching media query
-//     return sizes
-//       .map(size => size.mq && window.matchMedia(size.mq).matches)
-//       .indexOf(true)
-//   }
-//
-//   function setSize() {
-//     size = getSize()
-//   }
-//
-//   function checkSize() {
-//     return size !== getSize()
-//   }
-//
-//   function getSizeDetails() {
-//     // if no media queries matched, use the base case
-//     return size === -1
-//       ? sizes[sizes.length - 1]
-//       : sizes[size]
-//   }
 //
 //   // API
 //
