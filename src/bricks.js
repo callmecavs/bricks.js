@@ -13,7 +13,7 @@ export default (options = {}) => {
   // options
 
   const container = document.querySelector(options.container)
-  const packed    = `data-${ options.packed }`
+  const packed    = options.packed.indexOf('data-') === 0 ? options.packed : `data-${ options.packed }`
   const sizes     = options.sizes.reverse()
 
   const selectors = {
