@@ -1,6 +1,8 @@
 import knot from 'knot.js'
 
 export default (options = {}) => {
+  let persist       // flag signaling dynamically added elements
+
   let elements      // elements
   let heights       // element heights
   let columns       // column heights
@@ -34,10 +36,14 @@ export default (options = {}) => {
     return Array.apply(null, Array(length)).map(() => value)
   }
 
+  function sequence(functions) {
+    functions.forEach(func => func())
+  }
+
   // element helpers
 
-  function setElements(recent = false) {
-    elements = [...document.querySelectorAll(recent ? selectors.recent : selectors.all)]
+  function setElements() {
+    elements = [...document.querySelectorAll(persist ? selectors.recent : selectors.all)]
   }
 
   function setElementHeights() {
@@ -101,6 +107,8 @@ export default (options = {}) => {
   // API
 
   function pack() {
+    persist = false
+
     const actions = [
       setSizeIndex,
       setSizeDetails,
@@ -111,13 +119,21 @@ export default (options = {}) => {
       setContainerStyles
     ]
 
-    actions.forEach(action => action())
+    sequence(actions)
     return instance.emit('pack')
   }
 
   function update() {
-    // ...
+    persist = true
 
+    const actions = [
+      setElements,
+      setElementHeights,
+      setElementStyles,
+      setContainerStyles
+    ]
+
+    sequence(actions)
     return instance.emit('update')
   }
 
