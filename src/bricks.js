@@ -39,7 +39,7 @@ export default (options = {}) => {
   // instance
 
   const instance = knot({
-    pack: pack,
+    pack:   pack,
     update: update,
     resize: resize
   })
@@ -72,10 +72,10 @@ export default (options = {}) => {
     elements.forEach((element, index) => {
       let target = columns.indexOf(Math.min(...columns))
 
-      let top = columns[target]
+      let top  = columns[target]
       let left = (target * width) + (target * details.gutter)
 
-      element.style.position = 'absolute'
+      element.style.position  = 'absolute'
       element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
 
       element.setAttribute(packed, '')
@@ -88,8 +88,8 @@ export default (options = {}) => {
 
   function setContainerStyles() {
     container.style.position = 'relative'
-    container.style.width = `${ details.columns * width + (details.columns - 1) * details.gutter }px`
-    container.style.height = `${ Math.max(...columns) - details.gutter }px`
+    container.style.width    = `${ details.columns * width + (details.columns - 1) * details.gutter }px`
+    container.style.height   = `${ Math.max(...columns) - details.gutter }px`
   }
 
   // column helpers
