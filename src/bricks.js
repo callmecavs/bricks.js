@@ -4,6 +4,7 @@ export default (options = {}) => {
   let persist       // flag signaling dynamically added elements
 
   let elements      // elements
+  let width         // elements width
   let heights       // element heights
   let columns       // column heights
   let size          // size index
@@ -30,7 +31,7 @@ export default (options = {}) => {
 
   const run = [
     setElements,
-    setElementHeights,
+    setElementDimensions,
     setElementStyles,
     setContainerStyles
   ]
@@ -62,7 +63,8 @@ export default (options = {}) => {
     elements = [...document.querySelectorAll(persist ? selectors.recent : selectors.all)]
   }
 
-  function setElementHeights() {
+  function setElementDimensions() {
+    width   = elements[0].clientWidth
     heights = elements.map(element => element.clientHeight)
   }
 
@@ -71,7 +73,7 @@ export default (options = {}) => {
       let target = columns.indexOf(Math.min(...columns))
 
       let top = columns[target]
-      let left = (target * details.width) + (target * details.gutter)
+      let left = (target * width) + (target * details.gutter)
 
       element.style.position = 'absolute'
       element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
@@ -86,7 +88,7 @@ export default (options = {}) => {
 
   function setContainerStyles() {
     container.style.position = 'relative'
-    container.style.width = `${ details.columns * details.width + (details.columns - 1) * details.gutter }px`
+    container.style.width = `${ details.columns * width + (details.columns - 1) * details.gutter }px`
     container.style.height = `${ Math.max(...columns) - details.gutter }px`
   }
 
