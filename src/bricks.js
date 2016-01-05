@@ -20,6 +20,21 @@ export default (options = {}) => {
     recent: `${ options.container } > *:not([${ packed }])`
   }
 
+  // series
+
+  const init = [
+    setSizeIndex,
+    setSizeDetails,
+    resetColumns
+  ]
+
+  const run = [
+    setElements,
+    setElementHeights,
+    setElementStyles,
+    setContainerStyles
+  ]
+
   // instance
 
   const instance = knot({
@@ -37,6 +52,7 @@ export default (options = {}) => {
   }
 
   function sequence(functions) {
+    // run a series of functions in order
     functions.forEach(func => func())
   }
 
@@ -108,32 +124,15 @@ export default (options = {}) => {
 
   function pack() {
     persist = false
+    sequence(init.concat(run))
 
-    const actions = [
-      setSizeIndex,
-      setSizeDetails,
-      resetColumns,
-      setElements,
-      setElementHeights,
-      setElementStyles,
-      setContainerStyles
-    ]
-
-    sequence(actions)
     return instance.emit('pack')
   }
 
   function update() {
     persist = true
+    sequence(run)
 
-    const actions = [
-      setElements,
-      setElementHeights,
-      setElementStyles,
-      setContainerStyles
-    ]
-
-    sequence(actions)
     return instance.emit('update')
   }
 
