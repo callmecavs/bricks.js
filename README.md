@@ -1,5 +1,7 @@
 # Bricks.js
 
+[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js)
+
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
 But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
@@ -13,7 +15,8 @@ Follow these steps to get started:
 * [Install](#install)
 * [Instantiate](#instantiate)
   * [Parameters](#parameters)
-  * [Events](#events)
+* [Events](#events)
+* [API](#api)
 
 ### Install
 
@@ -27,13 +30,15 @@ $ npm install bricks.js --save
 
 Simply import Bricks, then instantiate it.
 
+It's recommended that you assign your Bricks instance to a variable. Using your instance you can enable the resize handler, bind callback handlers, and accommodate dynamically added elements.
+
+Parameters passed to the constructor are detailed below.
+
 ```es6
 // import Bricks
-
 import bricks from 'bricks.js'
 
 // create an instance
-
 const masonry = bricks({
   container: '.container',
   packed: 'packed',
@@ -45,32 +50,58 @@ const masonry = bricks({
 })
 ```
 
-It's recommended that you assign your Bricks instance to a variable. Using your instance you can enable the resize handler, bind callback handlers, and handle dynamically added elements.
-
-Parameters passed to the constructor are detailed below.
-
 #### Parameters
 
-Note that each of the following parameters are **required**:
+Note that **all parameters are required**:
 
-* A [container](#container)
+* A [container](#container) selector
 * A [packed](#packed) attribute
 * A [sizes](#sizes) array
 
 ##### container
 
-A CSS selector that matches the grid wrapper. The direct children of this element will be assumed to be the grid items.
+A CSS selector that matches the grid wrapper. The _direct children of this element are the grid items_.
 
 ##### packed
 
-A data attribute (without the `data-`) that is added to items already positioned in the grid.
+A data attribute added to items already positioned within the grid.
 
 ##### sizes
 
-#### Events
+An array of objects describing the grid's properties at different media queries.
+
+### Events
 
 Bricks returns an instance that is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Using the familiar emitter syntax, it's easy to bind callbacks to the various events that Bricks emits. Those events are described below:
 
 * `pack` - fires when
 * `update` - fires when dynamically added elements have finished being positioned
 * `resize` - fires when browser resizing results in the grid being repacked
+
+### API
+
+Note that all methods (including those from the emitter) are chainable.
+
+## Browser Support
+
+Bricks depends on the following browser APIs:
+
+* ES5 array methods: [forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach), [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), [indexOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)
+* [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+* [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)
+
+Consequently, it supports the following natively:
+
+* Chrome 24+
+* Firefox 23+
+* Safari 6.1+
+* Opera 15+
+* IE 10+
+* iOS Safari 7.1+
+* Android Browser 4.4+
+
+## License
+
+MIT. © 2016 Michael Cavalea
+
+[![Built With Love](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
