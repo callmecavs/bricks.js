@@ -13,6 +13,7 @@ Follow these steps to get started:
 * [Install](#install)
 * [Instantiate](#instantiate)
   * [Parameters](#parameters)
+  * [Events](#events)
 
 ### Install
 
@@ -44,13 +45,13 @@ const masonry = bricks({
 })
 ```
 
-It's recommended that you assign your Bricks instance to a variable. Using your instance, you can enable a resize handler, bind callback handlers, and handle dynamically added elements.
+It's recommended that you assign your Bricks instance to a variable. Using your instance you can enable the resize handler, bind callback handlers, and handle dynamically added elements.
 
 Parameters passed to the constructor are detailed below.
 
 #### Parameters
 
-Note that each of the following parameters are required:
+Note that each of the following parameters are **required**:
 
 * A [container](#container)
 * A [packed](#packed) attribute
@@ -65,3 +66,11 @@ A CSS selector that matches the grid wrapper. The direct children of this elemen
 A data attribute (without the `data-`) that is added to items already positioned in the grid.
 
 ##### sizes
+
+#### Events
+
+Bricks returns an instance that is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Using the familiar emitter syntax, it's easy to bind callbacks to the various events that Bricks emits. Those events are described below:
+
+* `pack` - fires when
+* `update` - fires when dynamically added elements have finished being positioned
+* `resize` - fires when browser resizing results in the grid being repacked
