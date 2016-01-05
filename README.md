@@ -11,7 +11,7 @@ Bricks was developed with a modern JavaScript workflow in mind. To use it, it's 
 Follow these steps to get started:
 
 * [Install](#install)
-* [Call](#call)
+* [Instantiate](#instantiate)
   * [Parameters](#parameters)
 
 ### Install
@@ -22,24 +22,46 @@ Using NPM, install Bricks.js, and add it to your package.json dependencies.
 $ npm install bricks.js --save
 ```
 
-### Call
+### Instantiate
 
-Import Bricks, then call it.
+Simply import Bricks, then instantiate it.
 
 ```es6
 // import Bricks
+
 import bricks from 'bricks.js'
 
-// call Bricks
-bricks('.container', '.grid-item', 4, 10, 200)
+// create an instance
+
+const masonry = bricks({
+  container: '.container',
+  packed: 'packed',
+  sizes: [
+    { columns: 2, gutter: 10 },
+    { mq: '(min-width: 768px)', columns: 3, gutter: 25 },
+    { mq: '(min-width: 1024px)', columns: 4, gutter: 50 }
+  ]
+})
 ```
 
-Explanation of each parameter follows.
+It's recommended that you assign your Bricks instance to a variable. Using your instance, you can enable a resize handler, bind callback handlers, and handle dynamically added elements.
+
+Parameters passed to the constructor are detailed below.
 
 #### Parameters
 
-* `container` - A CSS selector (string) that matches the element holding the grid items.
-* `elements` - A CSS selector (string) that matches the grid items.
-* `columns` - Number of desired columns in the grid.
-* `gutter` - Number of pixels between each column, and below each grid item.
-* `width` - Width of each grid item.
+Note that each of the following parameters are required:
+
+* A [container](#container)
+* A [packed](#packed) attribute
+* A [sizes](#sizes) array
+
+##### container
+
+A CSS selector that matches the grid wrapper. The direct children of this element will be assumed to be the grid items.
+
+##### packed
+
+A data attribute (without the `data-`) that is added to items already positioned in the grid.
+
+##### sizes
