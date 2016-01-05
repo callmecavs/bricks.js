@@ -1,7 +1,7 @@
 {
   "name":        "bricks.js",
   "version":     "0.0.1",
-  "description": "A blazing fast grid layout generator for fixed width elements.",
+  "description": "A blazing fast masonry layout generator for fixed width elements.",
   "homepage":    "https://github.com/callmecavs/bricks.js",
   "main":        "dist/bricks.min.js",
 

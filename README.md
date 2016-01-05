@@ -2,7 +2,7 @@
 
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
-But you don't need to, because Bricks is **a blazing fast grid layout generator for fixed width elements**.
+But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
 
 ## Usage
 
