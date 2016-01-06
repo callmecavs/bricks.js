@@ -84,7 +84,7 @@ Review the [Knot.js](https://github.com/callmecavs/knot.js) documentation for an
 
 Note that all methods, including those from the emitter, are chainable.
 
-#### `pack`
+#### .pack()
 
 Note that it needs to be called after your creating your instance. Creating an instance will not automatically pack the grid items.
 
@@ -95,7 +95,7 @@ const instance = bricks({
 }).pack()
 ```
 
-#### `update`
+#### .update()
 
 Used to handle dynamically added elements. If the media query hasn't changed, `update` is the preferred method for positioning new items within the grid, because it will only operate on items without the `packed` attribute.
 
@@ -109,7 +109,7 @@ const instance = bricks({
 instance.update()
 ```
 
-#### `resize`
+#### .resize()
 
 Used to bind the `resize` handler to the `window` resize event. The `pack` method will only be fired on resize _if the resulting screen size matches a different size parameter than the current one_.
 
