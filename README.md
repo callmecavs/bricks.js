@@ -8,7 +8,7 @@ But you don't need to, because Bricks is **a blazing fast masonry layout generat
 
 * [Demo](http://callmecavs.github.io/bricks.js/)
 
-## Quick Start [(Skip)](#usage)
+## Quick Start | [Skip](#usage)
 
 ```es6
 // import Bricks
