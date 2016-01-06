@@ -156,10 +156,12 @@ Note that all methods, including those from the emitter, are chainable.
 
 #### .pack()
 
-Note that it needs to be called after your creating your instance. Creating an instance will not automatically pack the grid items.
+Used to pack all elements within the container.
+
+Note that it needs to be called after your creating your instance.
 
 ```es6
-// pack the initial items, using an existing instance
+// pack all items, using an existing instance
 instance.pack()
 ```
 
@@ -167,7 +169,7 @@ instance.pack()
 
 Used to handle dynamically added elements.
 
-`Update` is the preferred method for positioning new items within the grid, _assuming the media query hasn't changed_, because it will only operate on items without the `packed` attribute.
+Note that `update` is the preferred method for positioning new items within the grid, _assuming the media query hasn't changed_, because it will only operate on items that have not yet been packed (without the `packed` attribute).
 
 ```es6
 // call the update method, using an existing instance
@@ -176,9 +178,9 @@ instance.update()
 
 #### .resize()
 
-Used to bind the `resize` handler to the `window` resize event. The `pack` method will only be fired on resize _if the resulting screen size matches a different size parameter than the current one_.
+Used to bind the `resize` handler to the `window` resize event. It should be called _only once_ - when creating your instance - to avoid event duplication, and ensure all potential resizing is handled.
 
-Note that it should only be called once, when creating your instance, to avoid event duplication, and ensure all potential resizing is handled.
+Note that the handler fires the `pack` method _only if the resulting screen size matches a size parameter other than the current one_.
 
 ```es6
 // bind the resize handler, using an existing instance
