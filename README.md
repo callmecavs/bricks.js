@@ -174,7 +174,7 @@ instance.on('pack', () => {
 
 Used to handle dynamically added elements.
 
-Note that `update` is the preferred method for positioning new items within the grid, _assuming the media query hasn't changed_, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
+Note that `update` is the preferred method for positioning new items within the grid, _assuming the breakpoint hasn't changed_, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
 
 ```es6
 // call the update method, using an existing instance
