@@ -6,6 +6,37 @@
 
 But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
 
+## Quick Start
+
+```es6
+// import Bricks
+import bricks from 'bricks.js'
+
+// create an instance
+const instance = bricks({
+  container: '.container',
+  packed: 'data-packed',
+  sizes: [
+    { columns: 2, gutter: 10 },
+    { mq: '768px', columns: 3, gutter: 25 },
+    { mq: '1024px', columns: 4, gutter: 50 }
+  ]
+})
+
+// bind callbacks
+instance
+  .on('pack', () => console.log('Packed!'))
+  .on('resize', () => console.log('Resized!'))
+  .on('update', () => console.log('Updated!'))
+
+// fire it up
+instance
+  .resize()     // bind resize handler
+  .pack()       // pack initial items
+```
+
+Continue reading for detailed usage documentation.
+
 ## Usage
 
 Bricks was developed with a modern JavaScript workflow in mind. To use it, it's recommended you have a build system in place that can transpile ES6, and bundle modules. For a minimal boilerplate that does so, check out [outset](https://github.com/callmecavs/outset).
@@ -103,7 +134,7 @@ const instance = bricks({
 
 ### Events
 
-Bricks returns an instance that is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Using the familiar emitter syntax, it's easy to bind callbacks to the various events that Bricks emits. Those events are described below:
+Bricks returns an instance that is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Using the event emitter syntax, it's easy to bind callbacks to the various events that Bricks emits. Those events are described below:
 
 * `pack` - fires when
 * `update` - fires when dynamically added elements have finished being positioned
