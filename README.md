@@ -89,10 +89,13 @@ Note that all methods, including those from the emitter, are chainable.
 Note that it needs to be called after your creating your instance. Creating an instance will not automatically pack the grid items.
 
 ```es6
-// create an instance, packing the initial items
+// create an instance
 const instance = bricks({
   // ...
-}).pack()
+})
+
+// pack the initial items
+instance.pack()
 ```
 
 #### .update()
@@ -100,7 +103,7 @@ const instance = bricks({
 Used to handle dynamically added elements. If the media query hasn't changed, `update` is the preferred method for positioning new items within the grid, because it will only operate on items without the `packed` attribute.
 
 ```es6
-// using your existing instance
+// create an instance
 const instance = bricks({
   // ...
 })
@@ -116,10 +119,13 @@ Used to bind the `resize` handler to the `window` resize event. The `pack` metho
 Note that it should only be called once, when creating your instance, to avoid event duplication, and ensure all potential resizing is handled.
 
 ```es6
-// when creating your instance, call the resize method
+// create an instance
 const instance = bricks({
   // ...
-}).resize()
+})
+
+// bind the resize handler
+instance.resize()
 ```
 
 ## Browser Support
