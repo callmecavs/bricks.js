@@ -50,8 +50,8 @@
         { mq: '1024px', columns: 4, gutter: 50 }
       ]
     })
-    .on('resize', function() { console.log('resized') })
-    .on('pack', function() { console.log('packed') })
+    .on('resize', function(details) { console.log(details) })
+    .on('pack', function(elements) { console.log(elements) })
 
     setTimeout(function() {
       console.time('Packing')

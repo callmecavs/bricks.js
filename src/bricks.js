@@ -128,14 +128,14 @@ export default (options = {}) => {
     persist = false
     sequence(init.concat(run))
 
-    return instance.emit('pack')
+    return instance.emit('pack', elements)
   }
 
   function update() {
     persist = true
     sequence(run)
 
-    return instance.emit('update')
+    return instance.emit('update', elements)
   }
 
   function resize() {
@@ -151,7 +151,7 @@ export default (options = {}) => {
     function handle() {
       if(checkSizeIndex()) {
         pack()
-        instance.emit('resize')
+        instance.emit('resize', details)
       }
 
       ticking = false
