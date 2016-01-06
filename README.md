@@ -1,12 +1,14 @@
 # Bricks.js
 
-[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js)
+[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js) [Demo](http://callmecavs.github.io/bricks.js/)
 
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
 But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
 
 ## Quick Start
+
+More detailed usage documentation below!
 
 ```es6
 // import Bricks
@@ -16,6 +18,8 @@ import bricks from 'bricks.js'
 const instance = bricks({
   container: '.container',
   packed: 'data-packed',
+
+  // define your grid at different breakpoints
   sizes: [
     { columns: 2, gutter: 10 },
     { mq: '768px', columns: 3, gutter: 25 },
@@ -25,9 +29,9 @@ const instance = bricks({
 
 // bind callbacks
 instance
-  .on('pack', () => console.log('Packed!'))
-  .on('resize', () => console.log('Resized!'))
-  .on('update', () => console.log('Updated!'))
+  .on('pack', () => console.log('All grid items have been packed.'))
+  .on('update', () => console.log('New grid items have been packed.'))
+  .on('resize', () => console.log('The grid has be re-packed to accommodate a new breakpoint.'))
 
 // start it up
 instance
@@ -39,11 +43,11 @@ fetch('path/to.html')
   .then(response => response.text())
   .then(html => {
     document.querySelector('.container').appendChild(html)
+
+    // position them within the existing grid
     instance.update()
   })
 ```
-
-Continue reading for detailed usage documentation.
 
 ## Usage
 
@@ -69,7 +73,7 @@ $ npm install bricks.js --save
 
 Simply import Bricks, then instantiate it.
 
-It's recommended that you assign your Bricks instance to a variable. Using your instance, you can enable the resize handler, bind callback handlers, and accommodate dynamically added elements.
+It's recommended that you **assign your Bricks instance to a variable**. Using your instance, you can enable the resize handler, bind callback handlers, and accommodate dynamically added elements.
 
 Parameters passed to the constructor are detailed below.
 
