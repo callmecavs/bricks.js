@@ -58,7 +58,7 @@ Follow these steps to get started:
 * [Install](#install)
 * [Instantiate](#instantiate)
   * [Parameters](#parameters)
-* [API / Events](#api-events)
+* [API / Events](#api--events)
 
 ### Install
 
