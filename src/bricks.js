@@ -111,10 +111,6 @@ export default (options = {}) => {
     size = getSizeIndex()
   }
 
-  function checkSizeIndex() {
-    return size !== getSizeIndex()
-  }
-
   function setSizeDetails() {
     // if no media queries matched, use the base case
     details = size === -1
@@ -149,7 +145,7 @@ export default (options = {}) => {
     }
 
     function handle() {
-      if(checkSizeIndex()) {
+      if(size !== getSizeIndex()) {
         pack()
         instance.emit('resize', details)
       }
