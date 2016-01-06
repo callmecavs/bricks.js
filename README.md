@@ -1,10 +1,12 @@
 # Bricks.js
 
-[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js) [Demo](http://callmecavs.github.io/bricks.js/)
+[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js)
 
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
 But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
+
+* [Demo](http://callmecavs.github.io/bricks.js/)
 
 ## Quick Start
 
