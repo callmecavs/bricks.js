@@ -99,7 +99,9 @@ Note that **all parameters are required**:
 
 ##### container
 
-A CSS selector that matches the grid wrapper. The _direct children of this element must be the grid items_.
+A CSS selector that matches the grid wrapper.
+
+Note that the _direct children of this element must be the grid items_.
 
 ```es6
 const instance = bricks({
@@ -128,9 +130,12 @@ When defining your sizes, note the following:
 * Sizes must use _`min-width` media queries_
 * Sizes must be listed _smallest to largest_
 
-The size without the `mq` attribute is assumed to be your mobile breakpoint, and must appear first.
+The size object without the `mq` property is assumed to be your smallest breakpoint, and must appear first.
 
 ```es6
+// columns - the number of vertical columns
+// gutter  - the space (in px) between the columns and grid items
+
 const instance = bricks({
   sizes: [
     { columns: 2, gutter: 10 },
@@ -142,15 +147,45 @@ const instance = bricks({
 
 ### Events
 
-Bricks returns an instance that is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Using the event emitter syntax, it's easy to bind callbacks to the various events that Bricks emits. Those events are described below:
+Bricks returns an instance that is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the events that Bricks emits.
 
-* `pack` - fires when
-* `update` - fires when dynamically added elements have finished being positioned
-* `resize` - fires when browser resizing results in the grid being repacked
+The event names, and the parameters passed to them (if any), are described below:
+
+#### pack
+
+Fired when all grid items have been packed.
+
+```es6
+instance.on('pack', () => {
+  // ...
+})
+```
+
+#### update
+
+Fired when newly added elements have been packed.
+
+```es6
+instance.on('update', () => {
+  // ...
+})
+```
+
+#### resize
+
+Fired when browser resizing has caused a new size object to match.
+
+Note that the `pack` event is also fired at this time. Use the `resize` event for code _specific to the size of the grid changing_, not the items being packed.
+
+```es6
+instance.on('resize', (size) => {
+  // 'size' is the newly matching size object
+})
+```
 
 ### API
 
-Note that **all methods, including those from the emitter, are chainable**.
+Note that **all methods, including those from the event emitter, are chainable**.
 
 Review the [Knot.js](https://github.com/callmecavs/knot.js) documentation for an understanding of the emitter methods.
 
@@ -158,7 +193,7 @@ Review the [Knot.js](https://github.com/callmecavs/knot.js) documentation for an
 
 Used to pack all elements within the container.
 
-Note that it needs to be called after your creating your instance.
+Note that it needs to be called after creating your instance, to pack the initial items.
 
 ```es6
 // pack all items, using an existing instance
@@ -178,7 +213,7 @@ instance.update()
 
 #### .resize()
 
-Used to bind the `resize` handler to the `window` resize event. It should be called _only once_ - when creating your instance - to avoid event duplication, and ensure all potential resizing is handled.
+Used to bind the `resize` handler to the `window` resize event. It should be called _only once_, when creating your instance, to avoid event duplication, and ensure all potential resizing is handled.
 
 Note that the resize handler only fires the `pack` method _if the resulting screen size matches a size parameter other than the current one_.
 
