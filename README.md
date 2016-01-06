@@ -29,10 +29,18 @@ instance
   .on('resize', () => console.log('Resized!'))
   .on('update', () => console.log('Updated!'))
 
-// fire it up
+// start it up
 instance
   .resize()     // bind resize handler
   .pack()       // pack initial items
+
+// add new items via AJAX
+fetch('path/to.html')
+  .then(response => response.text())
+  .then(html => {
+    document.querySelector('.container').appendChild(html)
+    instance.update()
+  })
 ```
 
 Continue reading for detailed usage documentation.
