@@ -150,11 +150,9 @@ const instance = bricks({
 
 ### API / Events
 
-Note that **all methods, including those from the event emitter, are chainable**.
-
 Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the API methods.
 
-API methods, and their corresponding events, are described below:
+Note that **all methods, including those from the event emitter, are chainable**. API methods, and their corresponding events, are described below:
 
 #### .pack()
 
@@ -192,19 +190,20 @@ instance.on('update', () => {
 
 Used to bind the `resize` handler to the `window` resize event. It should be called _only once_, when creating your instance.
 
-Note that the resize handler fires the `pack` method _if the resulting screen size matches a size parameter other than the current one_.
+The resize handler fires the `pack` method _if the resulting screen size matches a size parameter other than the current one_.
 
 ```es6
 // bind the resize handler, using an existing instance
 instance.resize()
 
 // fired when resizing has caused the items to be re-packed
-// the pack event is also fired at this time - use the resize event ONLY for breakpoint specific code
 instance.on('resize', (size) => {
   // 'size' is the newly matching size object
   // ...
 })
 ```
+
+Note that the `pack` event is fired immediately before the `resize` event. Use the `resize` event **only for breakpoint specific code, not code meant for when the grid has been packed**.
 
 ## Browser Support
 
