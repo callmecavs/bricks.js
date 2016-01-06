@@ -103,7 +103,7 @@ export default (options = {}) => {
   function getSizeIndex() {
     // find index of widest matching media query
     return sizes
-      .map(size => size.mq && window.matchMedia(size.mq).matches)
+      .map(size => size.mq && window.matchMedia(`(min-width: ${ size.mq })`).matches)
       .indexOf(true)
   }
 
