@@ -51,7 +51,7 @@
       ]
     })
     .on('resize', function(details) { console.log(details) })
-    .on('pack', function(elements) { console.log(elements) })
+    .on('pack', function() { console.log('packed') })
 
     setTimeout(function() {
       console.time('Packing')

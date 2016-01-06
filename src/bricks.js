@@ -128,14 +128,14 @@ export default (options = {}) => {
     persist = false
     sequence(init.concat(run))
 
-    return instance.emit('pack', elements)
+    return instance.emit('pack')
   }
 
   function update() {
     persist = true
     sequence(run)
 
-    return instance.emit('update', elements)
+    return instance.emit('update')
   }
 
   function resize() {
