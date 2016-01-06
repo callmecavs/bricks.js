@@ -80,7 +80,47 @@ Bricks returns an instance that is extended with [Knot.js](https://github.com/ca
 
 ### API
 
-Note that all methods (including those from the emitter) are chainable.
+Review the [Knot.js](https://github.com/callmecavs/knot.js) documentation for an understanding of the emitter methods.
+
+Note that all methods, including those from the emitter, are chainable.
+
+#### `pack`
+
+Note that it needs to be called after your creating your instance. Creating an instance will not automatically pack the grid items.
+
+```es6
+// create an instance, packing the initial items
+const instance = bricks({
+  // ...
+}).pack()
+```
+
+#### `update`
+
+Used to handle dynamically added elements. If the media query hasn't changed, `update` is the preferred method for positioning new items within the grid, because it will only operate on items without the `packed` attribute.
+
+```es6
+// using your existing instance
+const instance = bricks({
+  // ...
+})
+
+// call the update method
+instance.update()
+```
+
+#### `resize`
+
+Used to bind the `resize` handler to the `window` resize event. The `pack` method will only be fired on resize _if the resulting screen size matches a different size parameter than the current one_.
+
+Note that it should only be called once, when creating your instance, to avoid event duplication, and ensure all potential resizing is handled.
+
+```es6
+// when creating your instance, call the resize method
+const instance = bricks({
+  // ...
+}).resize()
+```
 
 ## Browser Support
 
