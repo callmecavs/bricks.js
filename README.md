@@ -58,8 +58,7 @@ Follow these steps to get started:
 * [Install](#install)
 * [Instantiate](#instantiate)
   * [Parameters](#parameters)
-* [Events](#events)
-* [API](#api)
+* [API / Events](#api-events)
 
 ### Install
 
@@ -149,49 +148,13 @@ const instance = bricks({
 })
 ```
 
-### Events
-
-Bricks returns an instance that is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the events that Bricks emits.
-
-The event names, and the parameters passed to them (if any), are described below:
-
-#### pack
-
-Fired when all grid items have been packed.
-
-```es6
-instance.on('pack', () => {
-  // ...
-})
-```
-
-#### update
-
-Fired when newly added elements have been packed.
-
-```es6
-instance.on('update', () => {
-  // ...
-})
-```
-
-#### resize
-
-Fired when browser resizing has caused a new size object to match.
-
-Note that the `pack` event is also fired at this time. Use the `resize` event for code _specific to the size of the grid changing_, not the items being packed.
-
-```es6
-instance.on('resize', (size) => {
-  // 'size' is the newly matching size object
-})
-```
-
-### API
+### API / Events
 
 Note that **all methods, including those from the event emitter, are chainable**.
 
-Review the [Knot.js](https://github.com/callmecavs/knot.js) documentation for an understanding of the emitter methods.
+Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the API methods.
+
+API methods, and their corresponding events, are described below:
 
 #### .pack()
 
@@ -202,6 +165,11 @@ Note that it needs to be called after creating your instance, to pack the initia
 ```es6
 // pack all items, using an existing instance
 instance.pack()
+
+// fired when all items have been packed
+instance.on('pack', () => {
+  // ...
+})
 ```
 
 #### .update()
@@ -213,17 +181,29 @@ Note that `update` is the preferred method for positioning new items within the 
 ```es6
 // call the update method, using an existing instance
 instance.update()
+
+// fired when newly added elements have been packed
+instance.on('update', () => {
+  // ...
+})
 ```
 
 #### .resize()
 
-Used to bind the `resize` handler to the `window` resize event. It should be called _only once_, when creating your instance, to avoid event duplication, and ensure all potential resizing is handled.
+Used to bind the `resize` handler to the `window` resize event. It should be called _only once_, when creating your instance.
 
-Note that the resize handler only fires the `pack` method _if the resulting screen size matches a size parameter other than the current one_.
+Note that the resize handler fires the `pack` method _if the resulting screen size matches a size parameter other than the current one_.
 
 ```es6
 // bind the resize handler, using an existing instance
 instance.resize()
+
+// fired when resizing has caused the items to be re-packed
+// the pack event is also fired at this time - use the resize event ONLY for breakpoint specific code
+instance.on('resize', (size) => {
+  // 'size' is the newly matching size object
+  // ...
+})
 ```
 
 ## Browser Support
