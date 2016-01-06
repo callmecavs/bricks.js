@@ -8,9 +8,7 @@ But you don't need to, because Bricks is **a blazing fast masonry layout generat
 
 * [Demo](http://callmecavs.github.io/bricks.js/)
 
-## Quick Start
-
-More detailed usage documentation below!
+## Quick Start [(Skip)](#usage)
 
 ```es6
 // import Bricks
@@ -33,7 +31,7 @@ const instance = bricks({
 instance
   .on('pack', () => console.log('All grid items have been packed.'))
   .on('update', () => console.log('New grid items have been packed.'))
-  .on('resize', () => console.log('The grid has be re-packed to accommodate a new breakpoint.'))
+  .on('resize', (size) => console.log('The grid has be re-packed to accommodate a new breakpoint.'))
 
 // start it up
 instance
