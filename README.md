@@ -74,8 +74,6 @@ Simply import Bricks, then instantiate it.
 
 It's recommended that you **assign your Bricks instance to a variable**. Using your instance, you can enable the resize handler, bind callback handlers, and accommodate dynamically added elements.
 
-Parameters passed to the constructor are detailed below.
-
 ```es6
 // import Bricks
 import bricks from 'bricks.js'
@@ -92,9 +90,11 @@ const instance = bricks({
 })
 ```
 
+Parameters passed to the constructor are detailed below.
+
 #### Parameters
 
-Note that **all parameters are required**:
+Note that all parameters are **required**:
 
 * A [container](#container) selector
 * A [packed](#packed) attribute
@@ -136,6 +136,7 @@ When defining your sizes, note the following:
 The size object without the `mq` property is assumed to be your smallest breakpoint, and must appear first.
 
 ```es6
+// mq      - the minimum viewport width (in px)
 // columns - the number of vertical columns
 // gutter  - the space (in px) between the columns and grid items
 
@@ -150,7 +151,7 @@ const instance = bricks({
 
 ### API / Events
 
-Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the API methods.
+A Bricks instance is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the API methods.
 
 Note that **all methods, including those from the event emitter, are chainable**. API methods, and their corresponding events, are described below:
 
@@ -180,7 +181,7 @@ Note that `update` is the preferred method for positioning new items within the 
 // call the update method, using an existing instance
 instance.update()
 
-// fired when newly added elements have been packed
+// fired when new elements have been packed
 instance.on('update', () => {
   // ...
 })
