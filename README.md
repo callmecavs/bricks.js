@@ -14,9 +14,9 @@ Follow these steps:
 
 1. [Install](#install)
 2. [Instantiate](#instantiate)
-3. [Review Options](#options)
+3. [Review Parameters](#parameters)
 4. [Review API / Events](#api--events)
-6. **[Review Example Code](https://github.com/callmecavs/bricks.js/tree/master/examples)**
+5. **[Review Example Code](https://github.com/callmecavs/bricks.js/tree/master/examples)**
 
 ## Install
 
@@ -28,11 +28,17 @@ Using NPM, install Bricks.js, and add it to your `package.json` dependencies.
 $ npm install bricks.js --save
 ```
 
+Refer to the [releases](https://github.com/callmecavs/layzr.js/releases) page for version specific information.
+
 ## Instantiate
 
 Simply import Bricks, then instantiate it.
 
-It's recommended that you **assign your Bricks instance to a variable**. Using your instance, you can enable the resize handler, bind callback handlers, and accommodate dynamically added elements.
+It's recommended that you **assign your Bricks instance to a variable**. Using your instance, you can:
+
+* enable the resize handler
+* add and remove event handlers
+* accommodate dynamically added elements
 
 ```es6
 // import Bricks
@@ -46,15 +52,15 @@ const instance = bricks({
 
 Parameters passed to the constructor are detailed below.
 
-## Options
+## Parameters
 
-Note that all options are **required**:
+Note that all parameters are **required**:
 
 * A [container](#container) selector
 * A [packed](#packed) attribute
 * A [sizes](#sizes) array
 
-##### container
+### container
 
 A CSS selector that matches the grid wrapper.
 
@@ -64,11 +70,11 @@ const instance = bricks({
 })
 ```
 
-Note that the _direct children of this element must be the grid items_.
+Note that the direct children of this element must be the grid items.
 
-##### packed
+### packed
 
-An attribute added to items positioned within the grid.
+An attribute added to items already positioned within the grid.
 
 ```es6
 const instance = bricks({
@@ -78,7 +84,7 @@ const instance = bricks({
 
 Note that if the attribute is not prefixed with `data-`, it will be added.
 
-##### sizes
+### sizes
 
 An array of objects describing the grid's properties at different breakpoints.
 
@@ -87,10 +93,10 @@ When defining your sizes, note the following:
 * Sizes must use **`min-width` media queries**
 * Sizes must be listed **smallest to largest**
 
-The size object without the `mq` property is assumed to be your smallest breakpoint, and must appear first.
+The size object without the `mq` property is assumed to be your **smallest breakpoint, and must appear first**.
 
 ```es6
-// mq      - the minimum viewport width
+// mq      - the minimum viewport width (in px)
 // columns - the number of vertical columns
 // gutter  - the space (in px) between the columns and grid items
 
@@ -107,60 +113,58 @@ const instance = bricks({
 
 ## API / Events
 
-A Bricks instance is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the API methods.
+Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove handlers emitted by the API methods.
 
 Note that **all methods, including those from the event emitter, are chainable**. API methods, and their corresponding events, are described below:
 
-#### .pack()
+### .pack()
 
-Used to pack all elements within the container.
-
-Note that it needs to be called after creating your instance, to pack the initial items.
+Used to pack _all elements_ within the container.
 
 ```es6
-// pack all items, using an existing instance
+// pack all items
 instance.pack()
 
-// fired when all items have been packed
+// `pack` is emitted when all items have been packed
 instance.on('pack', () => {
   // ...
 })
 ```
 
-#### .update()
+Note that it should be called when creating your instance, to pack the initial items.
 
-Used to handle dynamically added elements.
+### .update()
 
-Note that `update` is the preferred method for positioning new items within the grid, _assuming the breakpoint hasn't changed_, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
+Used to pack _elements without the `packed` attribute_ within the container.
 
 ```es6
-// call the update method, using an existing instance
+// pack new elements
 instance.update()
 
-// fired when new elements have been packed
+// `update` is emitted when all new elements have been packed
 instance.on('update', () => {
   // ...
 })
 ```
 
-#### .resize()
+Note that this is the preferred method for positioning new/dynamically added items within the grid, _assuming the breakpoint hasn't changed_, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
+
+### .resize()
 
 Used to bind the `resize` handler to the `window` resize event. It should be called _only once_, when creating your instance.
 
-The resize handler fires the `pack` method _if the resulting screen size matches a size parameter other than the current one_.
-
 ```es6
-// bind the resize handler, using an existing instance
+// bind the resize handler
 instance.resize()
 
-// fired when resizing has caused the items to be re-packed
+// `resize` is emitted when resizing has resulted in a new matching `size` object
 instance.on('resize', (size) => {
   // 'size' is the newly matching size object
   // ...
 })
 ```
 
-Note that the `pack` event is fired immediately before the `resize` event. Use the `resize` event **only for breakpoint specific code, not code meant for when the grid has been packed**.
+Note that the resize handler fires the `pack` method **if the resulting screen size matches a size parameter other than the current one**. In this case, the `pack` event will be fired immediately before the `resize` event. Use the `resize` event **only for breakpoint specific code, not code meant for when the grid has been packed**.
 
 ## Browser Support
 
