@@ -113,7 +113,7 @@ const instance = bricks({
 
 ## API / Events
 
-Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove handlers for the events emitted by the API methods.
+Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove handlers for the events emitted by the API methods. Review the emitter syntax [here](https://github.com/callmecavs/knot.js#api).
 
 Bricks exposes the following methods and events:
 
