@@ -186,6 +186,10 @@ Consequently, it supports the following natively:
 
 To support older browsers, consider including [polyfills/shims](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills) for the APIs listed above. There are **no plans to include any in the library**, in the interest of file size.
 
+## Colophon
+
+* Site Design: [Chris Allen](https://dribbble.com/cp_allen)
+
 ## License
 
 MIT. © 2016 Michael Cavalea
