@@ -1,6 +1,6 @@
 # Bricks.js
 
-[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js)
+[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js) [![Bricks.js on Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/callmecavs/bricks.js)
 
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
@@ -28,7 +28,7 @@ Using NPM, install Bricks.js, and add it to your `package.json` dependencies.
 $ npm install bricks.js --save
 ```
 
-Refer to the [releases](https://github.com/callmecavs/layzr.js/releases) page for version specific information.
+Refer to the [releases](https://github.com/callmecavs/bricks.js/releases) page for version specific information.
 
 ## Instantiate
 
@@ -42,10 +42,10 @@ It's recommended that you **assign your Bricks instance to a variable**. Using y
 
 ```es6
 // import Bricks
-import bricks from 'bricks.js'
+import Bricks from 'bricks.js'
 
 // create an instance
-const instance = bricks({
+const instance = Bricks({
   // ...
 })
 ```
@@ -65,7 +65,7 @@ Note that all parameters are **required**:
 A CSS selector that matches the grid wrapper.
 
 ```es6
-const instance = bricks({
+const instance = Bricks({
   container: '.selector'
 })
 ```
@@ -77,7 +77,7 @@ Note that the direct children of this element must be the grid items.
 An attribute added to items already positioned within the grid.
 
 ```es6
-const instance = bricks({
+const instance = Bricks({
   packed: 'data-packed'
 })
 ```
@@ -106,7 +106,7 @@ const sizes = [
   { mq: '1024px', columns: 4, gutter: 50 }
 ]
 
-const instance = bricks({
+const instance = Bricks({
   sizes: sizes
 })
 ```
