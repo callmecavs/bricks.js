@@ -113,9 +113,15 @@ const instance = bricks({
 
 ## API / Events
 
-Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove handlers emitted by the API methods.
+Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove handlers for the events emitted by the API methods.
 
-Note that **all methods, including those from the event emitter, are chainable**. API methods, and their corresponding events, are described below:
+Bricks exposes the following methods and events:
+
+* [pack](#pack)
+* [update](#update)
+* [resize](#resize)
+
+Note that **all methods, including those from the event emitter, are chainable**.
 
 ### .pack()
 
@@ -147,7 +153,7 @@ instance.on('update', () => {
 })
 ```
 
-Note that this is the preferred method for positioning new/dynamically added items within the grid, _assuming the breakpoint hasn't changed_, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
+Note that this is the preferred method for positioning dynamically added items within the grid, _assuming the breakpoint hasn't changed_, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
 
 ### .resize()
 
