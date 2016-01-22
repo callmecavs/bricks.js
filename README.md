@@ -6,61 +6,21 @@
 
 But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
 
-* [Demo](http://callmecavs.github.io/bricks.js/)
+* [Demo Page](http://callmecavs.github.io/bricks.js/)
 
-## Quick Start | [Skip](#usage)
+## Getting Started
 
-```es6
-// import Bricks
-import bricks from 'bricks.js'
+Follow these steps:
 
-// create an instance
-const instance = bricks({
-  container: '.container',
-  packed: 'data-packed',
+1. [Install](#install)
+2. [Instantiate](#instantiate)
+3. [Review Options](#options)
+4. [Review API / Events](#api--events)
+6. **[Review Example Code](https://github.com/callmecavs/bricks.js/tree/master/examples)**
 
-  // define your grid at different breakpoints
-  sizes: [
-    { columns: 2, gutter: 10 },
-    { mq: '768px', columns: 3, gutter: 25 },
-    { mq: '1024px', columns: 4, gutter: 50 }
-  ]
-})
-
-// bind callbacks
-instance
-  .on('pack', () => console.log('All grid items have been packed.'))
-  .on('update', () => console.log('New grid items have been packed.'))
-  .on('resize', (size) => console.log('The grid has be re-packed to accommodate a new breakpoint.'))
-
-// start it up
-instance
-  .resize()     // bind resize handler
-  .pack()       // pack initial items
-
-// add new items via AJAX
-fetch('path/to.html')
-  .then(response => response.text())
-  .then(html => {
-    document.querySelector('.container').appendChild(html)
-
-    // position them within the existing grid
-    instance.update()
-  })
-```
-
-## Usage
+## Install
 
 Bricks was developed with a modern JavaScript workflow in mind. To use it, it's recommended you have a build system in place that can transpile ES6, and bundle modules. For a minimal boilerplate that does so, check out [outset](https://github.com/callmecavs/outset).
-
-Follow these steps to get started:
-
-* [Install](#install)
-* [Instantiate](#instantiate)
-  * [Parameters](#parameters)
-* [API / Events](#api--events)
-
-### Install
 
 Using NPM, install Bricks.js, and add it to your `package.json` dependencies.
 
@@ -68,7 +28,7 @@ Using NPM, install Bricks.js, and add it to your `package.json` dependencies.
 $ npm install bricks.js --save
 ```
 
-### Instantiate
+## Instantiate
 
 Simply import Bricks, then instantiate it.
 
@@ -80,21 +40,15 @@ import bricks from 'bricks.js'
 
 // create an instance
 const instance = bricks({
-  container: '.container',
-  packed: 'data-packed',
-  sizes: [
-    { columns: 2, gutter: 10 },
-    { mq: '768px', columns: 3, gutter: 25 },
-    { mq: '1024px', columns: 4, gutter: 50 }
-  ]
+  // ...
 })
 ```
 
 Parameters passed to the constructor are detailed below.
 
-#### Parameters
+## Options
 
-Note that all parameters are **required**:
+Note that all options are **required**:
 
 * A [container](#container) selector
 * A [packed](#packed) attribute
@@ -104,19 +58,17 @@ Note that all parameters are **required**:
 
 A CSS selector that matches the grid wrapper.
 
-Note that the _direct children of this element must be the grid items_.
-
 ```es6
 const instance = bricks({
   container: '.selector'
 })
 ```
 
+Note that the _direct children of this element must be the grid items_.
+
 ##### packed
 
 An attribute added to items positioned within the grid.
-
-Note that if the attribute is not prefixed with `data-`, it will be added.
 
 ```es6
 const instance = bricks({
@@ -124,32 +76,36 @@ const instance = bricks({
 })
 ```
 
+Note that if the attribute is not prefixed with `data-`, it will be added.
+
 ##### sizes
 
 An array of objects describing the grid's properties at different breakpoints.
 
 When defining your sizes, note the following:
 
-* Sizes must use _`min-width` media queries_
-* Sizes must be listed _smallest to largest_
+* Sizes must use **`min-width` media queries**
+* Sizes must be listed **smallest to largest**
 
 The size object without the `mq` property is assumed to be your smallest breakpoint, and must appear first.
 
 ```es6
-// mq      - the minimum viewport width (in px)
+// mq      - the minimum viewport width
 // columns - the number of vertical columns
 // gutter  - the space (in px) between the columns and grid items
 
+const sizes = [
+  { columns: 2, gutter: 10 },
+  { mq: '768px', columns: 3, gutter: 25 },
+  { mq: '1024px', columns: 4, gutter: 50 }
+]
+
 const instance = bricks({
-  sizes: [
-    { columns: 2, gutter: 10 },
-    { mq: '768px', columns: 3, gutter: 25 },
-    { mq: '1024px', columns: 4, gutter: 50 }
-  ]
+  sizes: sizes
 })
 ```
 
-### API / Events
+## API / Events
 
 A Bricks instance is extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove callbacks associated with the API methods.
 
