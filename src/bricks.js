@@ -72,11 +72,9 @@ export default (options = {}) => {
     elements.forEach((element, index) => {
       let target = columns.indexOf(Math.min(...columns))
 
-      let top  = columns[target]
-      let left = (target * width) + (target * details.gutter)
-
       element.style.position  = 'absolute'
-      element.style.transform = `translate3d(${ left }px, ${ top }px, 0)`
+      element.style.top       = `${ columns[target] }px`
+      element.style.left      = `${ (target * width) + (target * details.gutter) }px`
 
       element.setAttribute(packed, '')
 
