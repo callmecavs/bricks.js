@@ -1,0 +1,142 @@
+.demo-heading,
+.demo-controls,
+.demo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.demo-heading,
+.demo-controls {
+  justify-content: space-between;
+}
+
+.demo-heading {
+  margin-bottom: 20px;
+
+  .content-heading {
+    margin-bottom: 0;
+  }
+}
+
+.demo-controls {
+  margin-bottom: 50px;
+
+  font-size: 1.4rem;
+
+  @include min($tablet) {
+    font-size: 1.6rem;
+  }
+}
+
+.demo-wrap {
+  @include min($tablet) {
+    align-items: baseline;
+  }
+}
+
+.demo-text {
+
+}
+
+.demo-cta {
+  position: relative;
+
+  padding: 8px 10px;
+
+  align-items: center;
+
+  border-radius: 3px;
+  background-color: $purple;
+
+  font-size: 1.6rem;
+  color: $white;
+}
+
+  .demo-cta::before {
+    content: "";
+
+    transform: translate3d(0, -50%, 0);
+
+    position: absolute;
+    top: 50%;
+    left: -5px;
+
+  	border-top: 5px solid transparent;
+    border-right: 5px solid $purple;
+  	border-bottom: 5px solid transparent;
+  }
+
+  .demo-cta-mobile {
+    float: right;
+
+    display: inline-flex;
+
+    @include min($tablet) {
+      display: none;
+    }
+  }
+
+  .demo-cta-tablet {
+    display: none;
+
+    @include min($tablet) {
+      display: flex;
+    }
+  }
+
+.demo-cta-icon {
+  margin-right: 10px;
+}
+
+.demo-speed {
+  margin-right: 5px;
+  margin-left: 5px;
+
+  color: $white;
+
+  @include min($tablet) {
+    margin-right: 10px;
+    margin-left: 10px;
+
+    font-size: 2.1rem;
+  }
+}
+
+  .demo-speed.is-animating {
+    animation: tada 1s;
+  }
+
+.demo-speed-icon {
+
+}
+
+.demo-input {
+  width: 40px;
+  margin-left: 10px;
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid $purple;
+  background-color: $red;
+
+  text-align: center;
+  color: $white;
+
+  outline: none;
+
+  @include min($tablet) {
+    width: 50px;
+    margin-right: 20px;
+
+    font-size: 2.1rem;
+  }
+
+  @include min($desktop) {
+    width: 75px;
+  }
+}
+
+  .demo-input::placeholder {
+    opacity: .5;
+
+    color: $white;
+  }

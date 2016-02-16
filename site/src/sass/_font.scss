@@ -1,0 +1,14 @@
+@include font-face("AG", "ag");
+
+html {
+  // 1rem = 10px
+  font-size: 10px;
+}
+
+body {
+  font-family: "AG", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  color: $purple;
+}

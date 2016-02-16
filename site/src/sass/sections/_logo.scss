@@ -1,0 +1,22 @@
+.logo {
+  transform: translate3d(0, -50%, 0);
+
+  position: absolute;
+  top: 25%;
+  left: 0;
+
+  width: 182px;
+  height: 45px;
+
+  background-image: url("images/logo.svg");
+  background-position: left center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+
+  @include hide-text;
+
+  @include min($tablet) {
+    width: 376px;
+    height: 93px;
+  }
+}

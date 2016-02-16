@@ -1,0 +1,50 @@
+.footer {
+  padding-bottom: 55px;
+
+  border-bottom: 10px solid $purple;
+
+  @include min($desktop) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.footer-cta {
+  float: right;
+
+  display: flex;
+  align-items: center;
+
+  @include min($desktop) {
+    order: 1;
+
+    margin-left: auto;
+  }
+}
+
+.footer-cta-icon {
+  margin-right: 10px;
+}
+
+.footer-credit {
+  display: flex;
+  align-items: baseline;
+
+  margin-bottom: 15px;
+
+  @include min($desktop) {
+    margin-right: 40px;
+    margin-bottom: 0;
+  }
+}
+
+.footer-credit-prefix {
+  margin-right: 10px;
+
+  font-size: 1.3rem;
+}
+
+.footer-credit-text {
+  font-size: 1.8rem;
+  color: $white;
+}

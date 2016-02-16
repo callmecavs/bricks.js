@@ -1,0 +1,35 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "",
+
+  "dependencies": {
+    "knot.js": "^1.0.1"
+  },
+
+  "devDependencies": {
+    "babel-core":          "*",
+    "babel-preset-es2015": "*",
+    "babelify":            "*",
+    "browser-sync":        "*",
+    "browserify":          "*",
+    "gulp":                "*",
+    "gulp-autoprefixer":   "*",
+    "gulp-changed":        "*",
+    "gulp-cssnano":        "*",
+    "gulp-file-include":   "*",
+    "gulp-htmlmin":        "*",
+    "gulp-imagemin":       "*",
+    "gulp-plumber":        "*",
+    "gulp-sass":           "*",
+    "gulp-sourcemaps":     "*",
+    "gulp-uglify":         "*",
+    "lodash.assign":       "*",
+    "node-notifier":       "*",
+    "vinyl-buffer":        "*",
+    "vinyl-source-stream": "*",
+    "watchify":            "*"
+  }
+}

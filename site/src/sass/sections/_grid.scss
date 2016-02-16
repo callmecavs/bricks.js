@@ -1,0 +1,16 @@
+.grid {
+  margin-right: auto;
+  margin-bottom: 50px;
+  margin-left: auto;
+
+  @include min($tablet) {
+    margin-bottom: 75px;
+  }
+}
+
+.grid-item {
+  width: 150px;
+
+  border-radius: 3px;
+  background-color: $purple;
+}

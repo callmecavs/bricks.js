@@ -1,0 +1,27 @@
+@mixin clearfix {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin min($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+@mixin font-face($font-name, $file-name) {
+  @font-face {
+    font-family: $font-name;
+    src: url("fonts/#{$file-name}.woff") format("woff");
+  }
+}

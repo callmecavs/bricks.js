@@ -1,0 +1,75 @@
+.header {
+  position: relative;
+
+  height: 100vh;
+}
+
+.header-container {
+  transform: translate3d(0, -50%, 0);
+
+  position: relative;
+  top: 57.5%;
+}
+
+.header-heading {
+  margin-bottom: 25px;
+
+  font-size: 2.4rem;
+
+  @include min($tablet) {
+    margin-bottom: 45px;
+
+    font-size: 4.8rem;
+    line-height: 1.2;
+  }
+}
+
+.header-cta {
+  display: inline-flex;
+  align-items: center;
+
+  font-size: 1.4rem;
+  color: $white;
+
+  @include min($tablet) {
+    font-size: 1.6rem;
+  }
+}
+
+.header-cta-icon {
+  margin-right: 15px;
+}
+
+.header-bricks {
+  overflow: visible !important;
+
+  position: absolute;
+  bottom: 75px;
+  right: 0;
+
+  @include min($tablet) {
+    bottom: 90px;
+  }
+}
+
+.header-bricks-piece {
+  animation-name: dropIn;
+  animation-duration: .5s;
+  animation-timing-function: ease;
+  animation-delay: .5s;
+  animation-fill-mode: both;
+}
+
+  .header-bricks-piece-2 { animation-delay: .75s; }
+  .header-bricks-piece-3 { animation-delay: 1s; }
+
+.header-rule {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background-color: $purple;
+}

@@ -1,0 +1,46 @@
+html, body, div,
+header, footer, main, section, nav,
+h1, h2, h3, h4, h5, h6, img, svg,
+p, a, hr, span, ol, ul, li,
+form, input, label {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+input {
+  border-radius: 0;
+}
+
+::placeholder {
+  opacity: 1;
+}
+
+a {
+  background-color: transparent;
+
+  text-decoration: none;
+  color: inherit;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+}
