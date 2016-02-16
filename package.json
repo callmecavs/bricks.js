@@ -8,6 +8,10 @@
   "author":  "Michael Cavalea",
   "license": "MIT",
 
+  "scripts": {
+    "site": "git subtree push --prefix site/dist origin gh-pages"
+  },
+
   "repository": {
     "type": "git",
     "url":  "https://github.com/callmecavs/bricks.js"
