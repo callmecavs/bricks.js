@@ -1,6 +1,6 @@
 # Bricks.js
 
-[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg)](https://www.npmjs.com/package/bricks.js) [![Bricks.js on Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/callmecavs/bricks.js)
+[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg?style=flat-square)](https://www.npmjs.com/package/bricks.js) [![Bricks.js on Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg?style=flat-square)](https://gitter.im/callmecavs/bricks.js)
 
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
@@ -96,7 +96,7 @@ When defining your sizes, note the following:
 The size object without the `mq` property is assumed to be your **smallest breakpoint, and must appear first**.
 
 ```es6
-// mq      - the minimum viewport width (in px)
+// mq      - the minimum viewport width (any unit)
 // columns - the number of vertical columns
 // gutter  - the space (in px) between the columns and grid items
 
@@ -131,7 +131,7 @@ Used to pack _all elements_ within the container.
 // pack all items
 instance.pack()
 
-// `pack` is emitted when all items have been packed
+// 'pack' is emitted when all items have been packed
 instance.on('pack', () => {
   // ...
 })
@@ -147,7 +147,7 @@ Used to pack _elements without the `packed` attribute_ within the container.
 // pack new elements
 instance.update()
 
-// `update` is emitted when all new elements have been packed
+// 'update' is emitted when all new elements have been packed
 instance.on('update', () => {
   // ...
 })
@@ -163,8 +163,8 @@ Used to bind the `resize` handler to the `window` resize event. It should be cal
 // bind the resize handler
 instance.resize()
 
-// `resize` is emitted when resizing has resulted in a new matching `size` object
-instance.on('resize', (size) => {
+// 'resize' is emitted when resizing has resulted in a new matching `size` object
+instance.on('resize', size => {
   // 'size' is the newly matching size object
   // ...
 })
