@@ -137,7 +137,7 @@ export default (options = {}) => {
 
     function requestFrame() {
       if(!ticking) {
-        requestAnimationFrame(() => handle())
+        requestAnimationFrame(handle)
         ticking = true
       }
     }
@@ -151,7 +151,7 @@ export default (options = {}) => {
       ticking = false
     }
 
-    window.addEventListener('resize', () => requestFrame())
+    window.addEventListener('resize', requestFrame)
 
     return instance
   }
