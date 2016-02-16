@@ -36,7 +36,7 @@ Simply import Bricks, then instantiate it.
 
 It's recommended that you **assign your Bricks instance to a variable**. Using your instance, you can:
 
-* enable the resize handler
+* enable and disable the resize handler
 * add and remove event handlers
 * accommodate dynamically added elements
 
@@ -115,7 +115,7 @@ const instance = Bricks({
 
 Bricks instances are extended with [Knot.js](https://github.com/callmecavs/knot.js), a browser-based event emitter. Use the event emitter syntax to add and remove handlers for the events emitted by the API methods. Review the emitter syntax [here](https://github.com/callmecavs/knot.js#api).
 
-Bricks exposes the following methods and events:
+Bricks exposes the following methods, and corresponding events:
 
 * [pack](#pack)
 * [update](#update)
@@ -128,10 +128,10 @@ Note that **all methods, including those from the event emitter, are chainable**
 Used to pack _all elements_ within the container.
 
 ```es6
-// pack all items
+// pack ALL grid items
 instance.pack()
 
-// 'pack' is emitted when all items have been packed
+// 'pack' is emitted when ALL items have been packed
 instance.on('pack', () => {
   // ...
 })
@@ -144,16 +144,16 @@ Note that it should be called when creating your instance, to pack the initial i
 Used to pack _elements without the `packed` attribute_ within the container.
 
 ```es6
-// pack new elements
+// pack NEW grid items
 instance.update()
 
-// 'update' is emitted when all new elements have been packed
+// 'update' is emitted when NEW items have been packed
 instance.on('update', () => {
   // ...
 })
 ```
 
-Note that this is the preferred method for positioning dynamically added items within the grid, _assuming the breakpoint hasn't changed_, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
+Note that this is the preferred method for handling dynamically added items, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
 
 ### .resize()
 
@@ -163,7 +163,7 @@ Used to bind the `resize` handler to the `window` resize event. It should be cal
 // bind the resize handler
 instance.resize()
 
-// 'resize' is emitted when resizing has resulted in a new matching `size` object
+// 'resize' is emitted when resizing has resulted in a new matching 'size' object
 instance.on('resize', size => {
   // 'size' is the newly matching size object
   // ...
