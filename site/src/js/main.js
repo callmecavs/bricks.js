@@ -1,6 +1,6 @@
 import * as _ from './util'
 
-import Bricks from './bricks'
+import Bricks from './bricks.min.js'
 
 // define Bricks options
 const options = {

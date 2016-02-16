@@ -65,6 +65,7 @@ const build = () => {
     .pipe(uglify())
     .pipe(header(attribution, { pkg: packageJSON }))
     .pipe(sourcemaps.write('./maps', { addComment: false }))
+    .pipe(gulp.dest('site/src/js'))
     .pipe(gulp.dest('dist'))
     .pipe(sync.stream())
 }
