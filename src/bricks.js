@@ -71,7 +71,7 @@ export default (options = {}) => {
 
   function setElementStyles() {
     elements.forEach((element, index) => {
-      let target = columns.indexOf(Math.min(...columns))
+      let target = columns.indexOf(Math.min.apply(Math, columns))
 
       element.style.position  = 'absolute'
       element.style.top       = `${ columns[target] }px`
@@ -88,7 +88,7 @@ export default (options = {}) => {
   function setContainerStyles() {
     container.style.position = 'relative'
     container.style.width    = `${ details.columns * width + (details.columns - 1) * details.gutter }px`
-    container.style.height   = `${ Math.max(...columns) - details.gutter }px`
+    container.style.height   = `${ Math.max.apply(Math, columns) - details.gutter }px`
   }
 
   // column helpers
