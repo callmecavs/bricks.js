@@ -1,31 +1,32 @@
 // import Bricks
 
-import bricks from 'bricks.js'
+import Bricks from 'bricks.js'
 
-// define your grid at different breakpoints
+// define your grid at different breakpoints, mobile first (smallest to largest)
 
 const sizes = [
-  { columns: 2, gutter: 10 },
+  { columns: 2, gutter: 10 },                   // assumed to be mobile, because of the missing mq property
   { mq: '768px', columns: 3, gutter: 25 },
   { mq: '1024px', columns: 4, gutter: 50 }
 ]
 
 // create an instance
 
-const instance = bricks({
+const instance = Bricks({
   container: '.container',
-  packed: 'data-packed',
-  sizes: sizes
+  packed:    'data-packed',        // if not prefixed with 'data-', it will be added
+  sizes:     sizes
 })
 
 // bind callbacks
 
 instance
-  .on('pack', () => console.log('All grid items have been packed.'))
-  .on('update', () => console.log('New grid items have been packed.'))
-  .on('resize', (size) => console.log('The grid has be re-packed to accommodate a new breakpoint.'))
+  .on('pack',   () => console.log('ALL grid items packed.'))
+  .on('update', () => console.log('NEW grid items packed.'))
+  .on('resize', size => console.log('The grid has be re-packed to accommodate a new BREAKPOINT.'))
 
 // start it up, when the DOM is ready
+// note that if images are in the grid, you may need to wait for document.readyState === 'complete'
 
 document.addEventListener('DOMContentLoaded', event => {
   instance
