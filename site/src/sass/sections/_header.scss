@@ -28,11 +28,11 @@
   display: inline-flex;
   align-items: center;
 
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: $white;
 
   @include min($tablet) {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 }
 
