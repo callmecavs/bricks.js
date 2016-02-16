@@ -153,7 +153,7 @@ instance.on('update', () => {
 })
 ```
 
-Note that this is the preferred method for handling dynamically added items, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
+Note that this is the **preferred method for handling dynamically added items**, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
 
 ### .resize()
 
