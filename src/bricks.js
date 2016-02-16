@@ -39,9 +39,9 @@ export default (options = {}) => {
   // instance
 
   const instance = knot({
-    pack:   pack,
-    update: update,
-    resize: resize
+    pack,
+    update,
+    resize
   })
 
   return instance
