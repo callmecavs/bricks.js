@@ -6,7 +6,7 @@
 
 But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
 
-* [Demo Page](http://callmecavs.github.io/bricks.js/)
+* [Demo Page](http://callmecavs.com/bricks.js/)
 
 ## Getting Started
 
