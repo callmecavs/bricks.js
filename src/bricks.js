@@ -5,7 +5,7 @@ export default (options = {}) => {
 
   let elements      // elements
   let width         // elements width
-  let heights       // element heights
+  let heights       // elements heights
   let columns       // column heights
   let size          // size index
   let details       // size details
@@ -60,7 +60,8 @@ export default (options = {}) => {
   // element helpers
 
   function setElements() {
-    elements = [...document.querySelectorAll(persist ? selectors.recent : selectors.all)]
+    const selector = persist ? selectors.recent : selectors.all
+    elements = Array.prototype.slice.call(document.querySelectorAll(selector))
   }
 
   function setElementDimensions() {
