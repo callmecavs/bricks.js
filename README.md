@@ -92,6 +92,7 @@ When defining your sizes, note the following:
 
 * Sizes must use **`min-width` media queries**
 * Sizes must be listed **smallest to largest**
+* Width of the grid items at each breakpoint **should be set in your CSS (in px)**
 
 The size object without the `mq` property is assumed to be your **smallest breakpoint, and must appear first**.
 
