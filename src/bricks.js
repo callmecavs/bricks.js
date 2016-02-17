@@ -3,7 +3,8 @@ import knot from 'knot.js'
 export default (options = {}) => {
   // globals
 
-  let persist
+  let persist           // updating or packing all elements?
+  let ticking           // for debounced resize
 
   let sizeIndex
   let sizeDetail
@@ -21,8 +22,8 @@ export default (options = {}) => {
   const sizes     = options.sizes.reverse()
 
   const selectors = {
-    all:    `${ options.container } > *`,
-    recent: `${ options.container } > *:not([${ packed }])`
+    all: `${ options.container } > *`,
+    new: `${ options.container } > *:not([${ packed }])`
   }
 
   // series
@@ -69,7 +70,7 @@ export default (options = {}) => {
   // element helpers
 
   function setNodes() {
-    nodes = toArray(persist ? selectors.recent : selectors.all)
+    nodes = toArray(persist ? selectors.new : selectors.all)
   }
 
   function setNodesDimensions() {
@@ -79,7 +80,7 @@ export default (options = {}) => {
 
   function setNodesStyles() {
     nodes.forEach((element, index) => {
-      let target = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
+      const target = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
 
       element.style.position  = 'absolute'
       element.style.top       = `${ columnHeights[target] }px`
@@ -125,6 +126,24 @@ export default (options = {}) => {
       : sizes[sizeIndex]
   }
 
+  // resize helpers
+
+  function resizeFrame() {
+    if(!ticking) {
+      requestAnimationFrame(resizeHandler)
+      ticking = true
+    }
+  }
+
+  function resizeHandler() {
+    if(sizeIndex !== getSizeIndex()) {
+      pack()
+      instance.emit('resize', sizeDetail)
+    }
+
+    ticking = false
+  }
+
   // API
 
   function pack() {
@@ -142,25 +161,7 @@ export default (options = {}) => {
   }
 
   function resize() {
-    let ticking
-
-    function requestFrame() {
-      if(!ticking) {
-        requestAnimationFrame(handle)
-        ticking = true
-      }
-    }
-
-    function handle() {
-      if(sizeIndex !== getSizeIndex()) {
-        pack()
-        instance.emit('resize', sizeDetail)
-      }
-
-      ticking = false
-    }
-
-    window.addEventListener('resize', requestFrame)
+    window.addEventListener('resize', resizeFrame)
 
     return instance
   }
