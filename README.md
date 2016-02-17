@@ -1,6 +1,6 @@
 # Bricks.js
 
-[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg?style=flat-square)](https://www.npmjs.com/package/bricks.js) [![Bricks.js on Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg?style=flat-square)](https://gitter.im/callmecavs/bricks.js)
+[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg?style=flat-square)](https://www.npmjs.com/package/bricks.js)
 
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
