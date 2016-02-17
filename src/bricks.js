@@ -1,14 +1,18 @@
 import knot from 'knot.js'
 
 export default (options = {}) => {
-  let persist       // flag signaling dynamically added elements
+  // globals
 
-  let elements      // elements
-  let width         // elements width
-  let heights       // elements heights
-  let columns       // column heights
-  let size          // size index
-  let details       // size details
+  let persist
+
+  let sizeIndex
+  let sizeDetail
+
+  let columnHeights
+
+  let nodes
+  let nodesWidth
+  let nodesHeights
 
   // options
 
@@ -61,25 +65,25 @@ export default (options = {}) => {
 
   function setElements() {
     const selector = persist ? selectors.recent : selectors.all
-    elements = Array.prototype.slice.call(document.querySelectorAll(selector))
+    nodes = Array.prototype.slice.call(document.querySelectorAll(selector))
   }
 
   function setElementDimensions() {
-    width   = elements[0].clientWidth
-    heights = elements.map(element => element.clientHeight)
+    nodesWidth   = nodes[0].clientWidth
+    nodesHeights = nodes.map(element => element.clientHeight)
   }
 
   function setElementStyles() {
-    elements.forEach((element, index) => {
-      let target = columns.indexOf(Math.min.apply(Math, columns))
+    nodes.forEach((element, index) => {
+      let target = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
 
       element.style.position  = 'absolute'
-      element.style.top       = `${ columns[target] }px`
-      element.style.left      = `${ (target * width) + (target * details.gutter) }px`
+      element.style.top       = `${ columnHeights[target] }px`
+      element.style.left      = `${ (target * nodesWidth) + (target * sizeDetail.gutter) }px`
 
       element.setAttribute(packed, '')
 
-      columns[target] += heights[index] + details.gutter
+      columnHeights[target] += nodesHeights[index] + sizeDetail.gutter
     })
   }
 
@@ -87,14 +91,14 @@ export default (options = {}) => {
 
   function setContainerStyles() {
     container.style.position = 'relative'
-    container.style.width    = `${ details.columns * width + (details.columns - 1) * details.gutter }px`
-    container.style.height   = `${ Math.max.apply(Math, columns) - details.gutter }px`
+    container.style.width    = `${ sizeDetail.columns * nodesWidth + (sizeDetail.columns - 1) * sizeDetail.gutter }px`
+    container.style.height   = `${ Math.max.apply(Math, columnHeights) - sizeDetail.gutter }px`
   }
 
   // column helpers
 
   function resetColumns() {
-    columns = fillArray(details.columns, 0)
+    columnHeights = fillArray(sizeDetail.columns, 0)
   }
 
   // size helpers
@@ -107,14 +111,14 @@ export default (options = {}) => {
   }
 
   function setSizeIndex() {
-    size = getSizeIndex()
+    sizeIndex = getSizeIndex()
   }
 
   function setSizeDetails() {
     // if no media queries matched, use the base case
-    details = size === -1
+    sizeDetail = sizeIndex === -1
       ? sizes[sizes.length - 1]
-      : sizes[size]
+      : sizes[sizeIndex]
   }
 
   // API
@@ -144,9 +148,9 @@ export default (options = {}) => {
     }
 
     function handle() {
-      if(size !== getSizeIndex()) {
+      if(sizeIndex !== getSizeIndex()) {
         pack()
-        instance.emit('resize', details)
+        instance.emit('resize', sizeDetail)
       }
 
       ticking = false
