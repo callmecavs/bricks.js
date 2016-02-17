@@ -90,11 +90,10 @@ An array of objects describing the grid's properties at different breakpoints.
 
 When defining your sizes, note the following:
 
-* Sizes must use **`min-width` media queries**
 * Sizes must be listed **smallest to largest**
+* Sizes must use **`min-width` media queries (any unit)**
 * Width of the grid items at each breakpoint **should be set in your CSS (in px)**
-
-The size object without the `mq` property is assumed to be your **smallest breakpoint, and must appear first**.
+* The size without the `mq` property is assumed to be your **smallest breakpoint, and must appear first**
 
 ```es6
 // mq      - the minimum viewport width (any unit)
