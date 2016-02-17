@@ -118,7 +118,7 @@ export default (options = {}) => {
     })
   }
 
-  // container helper
+  // container helpers
 
   function setContainerStyles() {
     container.style.position = 'relative'
