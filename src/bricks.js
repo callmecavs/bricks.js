@@ -28,7 +28,7 @@ export default (options = {}) => {
 
   // series
 
-  const init = [
+  const setup = [
     setSizeIndex,
     setSizeDetail,
     setColumns
@@ -67,7 +67,33 @@ export default (options = {}) => {
     return Array.apply(null, Array(length)).map(() => 0)
   }
 
-  // element helpers
+  // size helpers
+
+  function getSizeIndex() {
+    // find index of widest matching media query
+    return sizes
+      .map(size => size.mq && window.matchMedia(`(min-width: ${ size.mq })`).matches)
+      .indexOf(true)
+  }
+
+  function setSizeIndex() {
+    sizeIndex = getSizeIndex()
+  }
+
+  function setSizeDetail() {
+    // if no media queries matched, use the base case
+    sizeDetail = sizeIndex === -1
+      ? sizes[sizes.length - 1]
+      : sizes[sizeIndex]
+  }
+
+  // column helpers
+
+  function setColumns() {
+    columnHeights = fillArray(sizeDetail.columns)
+  }
+
+  // node helpers
 
   function setNodes() {
     nodes = toArray(persist ? selectors.new : selectors.all)
@@ -92,38 +118,12 @@ export default (options = {}) => {
     })
   }
 
-  // container helpers
+  // container helper
 
   function setContainerStyles() {
     container.style.position = 'relative'
     container.style.width    = `${ sizeDetail.columns * nodesWidth + (sizeDetail.columns - 1) * sizeDetail.gutter }px`
     container.style.height   = `${ Math.max.apply(Math, columnHeights) - sizeDetail.gutter }px`
-  }
-
-  // column helpers
-
-  function setColumns() {
-    columnHeights = fillArray(sizeDetail.columns)
-  }
-
-  // size helpers
-
-  function getSizeIndex() {
-    // find index of widest matching media query
-    return sizes
-      .map(size => size.mq && window.matchMedia(`(min-width: ${ size.mq })`).matches)
-      .indexOf(true)
-  }
-
-  function setSizeIndex() {
-    sizeIndex = getSizeIndex()
-  }
-
-  function setSizeDetail() {
-    // if no media queries matched, use the base case
-    sizeDetail = sizeIndex === -1
-      ? sizes[sizes.length - 1]
-      : sizes[sizeIndex]
   }
 
   // resize helpers
@@ -148,7 +148,7 @@ export default (options = {}) => {
 
   function pack() {
     persist = false
-    runSeries(init.concat(run))
+    runSeries(setup.concat(run))
 
     return instance.emit('pack')
   }
