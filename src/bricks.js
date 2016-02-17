@@ -29,14 +29,14 @@ export default (options = {}) => {
 
   const init = [
     setSizeIndex,
-    setSizeDetails,
-    resetColumns
+    setSizeDetail,
+    setColumns
   ]
 
   const run = [
-    setElements,
-    setElementDimensions,
-    setElementStyles,
+    setNodes,
+    setNodesDimensions,
+    setNodesStyles,
     setContainerStyles
   ]
 
@@ -52,28 +52,32 @@ export default (options = {}) => {
 
   // general helpers
 
-  function fillArray(length, value) {
-    return Array.apply(null, Array(length)).map(() => value)
+  function runSeries(functions) {
+    functions.forEach(func => func())
   }
 
-  function sequence(functions) {
-    // run a series of functions in order
-    functions.forEach(func => func())
+  // array helpers
+
+  function toArray(selector) {
+    return Array.prototype.slice.call(document.querySelectorAll(selector))
+  }
+
+  function fillArray(length) {
+    return Array.apply(null, Array(length)).map(() => 0)
   }
 
   // element helpers
 
-  function setElements() {
-    const selector = persist ? selectors.recent : selectors.all
-    nodes = Array.prototype.slice.call(document.querySelectorAll(selector))
+  function setNodes() {
+    nodes = toArray(persist ? selectors.recent : selectors.all)
   }
 
-  function setElementDimensions() {
+  function setNodesDimensions() {
     nodesWidth   = nodes[0].clientWidth
     nodesHeights = nodes.map(element => element.clientHeight)
   }
 
-  function setElementStyles() {
+  function setNodesStyles() {
     nodes.forEach((element, index) => {
       let target = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
 
@@ -97,8 +101,8 @@ export default (options = {}) => {
 
   // column helpers
 
-  function resetColumns() {
-    columnHeights = fillArray(sizeDetail.columns, 0)
+  function setColumns() {
+    columnHeights = fillArray(sizeDetail.columns)
   }
 
   // size helpers
@@ -114,7 +118,7 @@ export default (options = {}) => {
     sizeIndex = getSizeIndex()
   }
 
-  function setSizeDetails() {
+  function setSizeDetail() {
     // if no media queries matched, use the base case
     sizeDetail = sizeIndex === -1
       ? sizes[sizes.length - 1]
@@ -125,14 +129,14 @@ export default (options = {}) => {
 
   function pack() {
     persist = false
-    sequence(init.concat(run))
+    runSeries(init.concat(run))
 
     return instance.emit('pack')
   }
 
   function update() {
     persist = true
-    sequence(run)
+    runSeries(run)
 
     return instance.emit('update')
   }
