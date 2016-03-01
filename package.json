@@ -1,13 +1,13 @@
 {
   "name":        "bricks.js",
-  "version":     "1.0.0",
+  "version":     "1.0.1",
   "description": "A blazing fast masonry layout generator for fixed width elements.",
   "homepage":    "https://github.com/callmecavs/bricks.js",
   "main":        "dist/bricks.min.js",
   "jsnext:main": "src/bricks.js",
 
   "author":  "Michael Cavalea",
-  "license": "MIT",
+  "license": "GPL-3.0",
 
   "scripts": {
     "site": "git subtree push --prefix site/dist origin gh-pages"
