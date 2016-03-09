@@ -160,8 +160,12 @@ export default (options = {}) => {
     return instance.emit('update')
   }
 
-  function resize() {
-    window.addEventListener('resize', resizeFrame)
+  function resize(flag) {
+    const action = flag
+      ? 'addEventListener'
+      : 'removeEventListener'
+
+    window[action]('resize', resizeFrame)
 
     return instance
   }

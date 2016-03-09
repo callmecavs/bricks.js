@@ -156,13 +156,15 @@ instance.on('update', () => {
 
 Note that this is the **preferred method for handling dynamically added items**, because it will only operate on items that have not yet been packed (i.e. don't have the `packed` attribute).
 
-### .resize()
+### .resize(flag)
 
-Used to bind the `resize` handler to the `window` resize event. It should be called _only once_, when creating your instance.
+Used to add or remove the `resize` event handler. It's recommended that you add the resize handler when you create your instance.
 
 ```es6
-// bind the resize handler
-instance.resize()
+// add or remove the resize handler
+instance
+  .resize(true)       // 'true' adds it
+  .resize(false)      // 'false' removes it
 
 // 'resize' is emitted when resizing has resulted in a new matching 'size' object
 instance.on('resize', size => {
