@@ -16,7 +16,7 @@ const options = {
 }
 
 // create Bricks instance, adding resize handler
-const instance = Bricks(options).resize()
+const instance = Bricks(options).resize(true)
 
 const run = () => {
   const grid = document.querySelector('[data-grid]')

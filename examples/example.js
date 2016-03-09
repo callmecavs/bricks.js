@@ -30,8 +30,8 @@ instance
 
 document.addEventListener('DOMContentLoaded', event => {
   instance
-    .resize()     // bind resize handler
-    .pack()       // pack initial items
+    .resize(true)     // bind resize handler
+    .pack()           // pack initial items
 })
 
 // add new items via AJAX
