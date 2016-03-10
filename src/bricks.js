@@ -160,7 +160,7 @@ export default (options = {}) => {
     return instance.emit('update')
   }
 
-  function resize(flag) {
+  function resize(flag = true) {
     const action = flag
       ? 'addEventListener'
       : 'removeEventListener'
