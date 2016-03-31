@@ -17,13 +17,13 @@ export default (options = {}) => {
 
   // options
 
-  const container = document.querySelector(options.container)
+  const container = typeof options.container === 'string' ? document.querySelector(options.container) : options.container
   const packed    = options.packed.indexOf('data-') === 0 ? options.packed : `data-${ options.packed }`
   const sizes     = options.sizes.reverse()
 
   const selectors = {
-    all: `${ options.container } > *`,
-    new: `${ options.container } > *:not([${ packed }])`
+    all: () => container.children,
+    new: () => toArray(container.children).filter(n => !n.getAttribute(packed))
   }
 
   // series
@@ -59,8 +59,8 @@ export default (options = {}) => {
 
   // array helpers
 
-  function toArray(selector) {
-    return Array.prototype.slice.call(document.querySelectorAll(selector))
+  function toArray(nodes) {
+    return nodes ? Array.prototype.slice.call(nodes) : []
   }
 
   function fillArray(length) {
@@ -96,7 +96,7 @@ export default (options = {}) => {
   // node helpers
 
   function setNodes() {
-    nodes = toArray(persist ? selectors.new : selectors.all)
+    nodes = persist ? selectors.new() : selectors.all()
   }
 
   function setNodesDimensions() {
