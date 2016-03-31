@@ -100,6 +100,7 @@ export default (options = {}) => {
   }
 
   function setNodesDimensions() {
+    if (nodes.length === 0) return;
     nodesWidth   = nodes[0].clientWidth
     nodesHeights = nodes.map(element => element.clientHeight)
   }
