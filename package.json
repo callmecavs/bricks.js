@@ -1,6 +1,6 @@
 {
   "name":        "bricks.js",
-  "version":     "1.1.2",
+  "version":     "1.2.0",
   "description": "A blazing fast masonry layout generator for fixed width elements.",
   "homepage":    "https://github.com/callmecavs/bricks.js",
   "main":        "dist/bricks.min.js",
@@ -33,20 +33,16 @@
   },
 
   "devDependencies": {
-    "babel-core":                      "*",
-    "babel-preset-es2015":             "*",
-    "babel-plugin-add-module-exports": "*",
-    "babelify":                        "*",
-    "browser-sync":                    "*",
-    "browserify":                      "*",
-    "gulp":                            "*",
-    "gulp-header":                     "*",
-    "gulp-sourcemaps":                 "*",
-    "gulp-uglify":                     "*",
-    "lodash.assign":                   "*",
-    "node-notifier":                   "*",
-    "vinyl-buffer":                    "*",
-    "vinyl-source-stream":             "*",
-    "watchify":                        "*"
+    "babel-preset-es2015-rollup":                "*",
+    "babel-plugin-transform-object-rest-spread": "*",
+    "browser-sync":                              "*",
+    "del":                                       "*",
+    "gulp":                                      "*",
+    "node-notifier":                             "*",
+    "rollup":                                    "*",
+    "rollup-plugin-babel":                       "*",
+    "rollup-plugin-commonjs":                    "*",
+    "rollup-plugin-node-resolve":                "*",
+    "rollup-plugin-uglify":                      "*"
   }
 }
