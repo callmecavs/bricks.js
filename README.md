@@ -7,7 +7,6 @@
 But you don't need to, because Bricks is **a blazing fast masonry layout generator for fixed width elements**.
 
 * [Demo Page](http://callmecavs.com/bricks.js/)
-* [Commercial Licenses](http://www.site.uplabs.com/posts/bricks-js-plugin)
 
 ## Getting Started
 
@@ -202,7 +201,5 @@ To support older browsers, consider including [polyfills/shims](https://github.c
 ## License
 
 [GPL-3.0](http://www.gnu.org/licenses/gpl.txt). © 2016 Michael Cavalea
-
-For use in open source projects that are compatible with this license, you may use this project under the terms of it. [Commercial licenses](http://www.site.uplabs.com/posts/bricks-js-plugin) are available for purchase.
 
 [![Built With Love](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
