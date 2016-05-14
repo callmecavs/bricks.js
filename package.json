@@ -7,7 +7,7 @@
   "jsnext:main": "src/bricks.js",
 
   "author":  "Michael Cavalea",
-  "license": "GPL-3.0",
+  "license": "MIT",
 
   "scripts": {
     "site": "git subtree push --prefix site/dist origin gh-pages"
@@ -29,7 +29,7 @@
   ],
 
   "dependencies": {
-    "knot.js": "^1.0.1"
+    "knot.js": "^1.1.1"
   },
 
   "devDependencies": {
