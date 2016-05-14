@@ -1,24 +1,24 @@
 // IMPORTS
 
-import babelify from 'babelify'
-import sync from 'browser-sync'
-import browserify from 'browserify'
-import gulp from 'gulp'
-import autoprefixer from 'gulp-autoprefixer'
-import changed from 'gulp-changed'
-import nano from 'gulp-cssnano'
-import fileinclude from 'gulp-file-include'
-import htmlmin from 'gulp-htmlmin'
-import imagemin from 'gulp-imagemin'
-import plumber from 'gulp-plumber'
-import sass from 'gulp-sass'
-import sourcemaps from 'gulp-sourcemaps'
-import uglify from 'gulp-uglify'
-import assign from 'lodash.assign'
-import notifier from 'node-notifier'
-import buffer from 'vinyl-buffer'
-import source from 'vinyl-source-stream'
-import watchify from 'watchify'
+const babelify = require('babelify')
+const sync = require('browser-sync')
+const browserify = require('browserify')
+const gulp = require('gulp')
+const autoprefixer = require('gulp-autoprefixer')
+const changed = require('gulp-changed')
+const nano = require('gulp-cssnano')
+const fileinclude = require('gulp-file-include')
+const htmlmin = require('gulp-htmlmin')
+const imagemin = require('gulp-imagemin')
+const plumber = require('gulp-plumber')
+const sass = require('gulp-sass')
+const sourcemaps = require('gulp-sourcemaps')
+const uglify = require('gulp-uglify')
+const assign = require('lodash.assign')
+const notifier = require('node-notifier')
+const buffer = require('vinyl-buffer')
+const source = require('vinyl-source-stream')
+const watchify = require('watchify')
 
 // ERROR HANDLER
 
