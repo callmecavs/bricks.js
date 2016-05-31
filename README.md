@@ -56,7 +56,7 @@ Parameters passed to the constructor are detailed below.
 
 Note that all parameters are **required**:
 
-* A [container](#container) selector
+* A [container](#container) selector or Node
 * A [packed](#packed) attribute
 * A [sizes](#sizes) array
 
@@ -67,6 +67,12 @@ A CSS selector that matches the grid wrapper.
 ```es6
 const instance = Bricks({
   container: '.selector'
+})
+```
+
+```es6
+const instance = Bricks({
+  container: myContainer
 })
 ```
 
