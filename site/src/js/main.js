@@ -2,9 +2,11 @@ import * as _ from './util'
 
 import Bricks from './bricks.min.js'
 
+const container = document.querySelector('[data-grid]')
+
 // define Bricks options
 const options = {
-  container: '[data-grid]',
+  container: container,
   packed: 'data-packed',
   sizes: [
     { columns: 2, gutter: 10 },

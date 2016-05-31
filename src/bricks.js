@@ -17,13 +17,19 @@ export default (options = {}) => {
 
   // options
 
-  const container = document.querySelector(options.container)
-  const packed    = options.packed.indexOf('data-') === 0 ? options.packed : `data-${ options.packed }`
-  const sizes     = options.sizes.slice().reverse()
+  const nodeContainer = isNode(options.container)
+  const container     = nodeContainer ? options.container : document.querySelector(options.container)
+  const packed        = options.packed.indexOf('data-') === 0 ? options.packed : `data-${ options.packed }`
+  const sizes         = options.sizes.slice().reverse()
 
   const selectors = {
     all: `${ options.container } > *`,
     new: `${ options.container } > *:not([${ packed }])`
+  }
+
+  const nodeSelectors = {
+    all: () => Array.from(container.children),
+    new: () => Array.from(container.querySelectorAll(':not([${ packed }])'))
   }
 
   // series
@@ -52,7 +58,6 @@ export default (options = {}) => {
   return instance
 
   // general helpers
-
   function runSeries(functions) {
     functions.forEach(func => func())
   }
@@ -96,7 +101,9 @@ export default (options = {}) => {
   // node helpers
 
   function setNodes() {
-    nodes = toArray(persist ? selectors.new : selectors.all)
+    nodes = nodeContainer
+      ? Array.from(persist ? nodeSelectors.new() : nodeSelectors.all())
+      : toArray(persist ? selectors.new : selectors.all);
   }
 
   function setNodesDimensions() {
@@ -120,6 +127,10 @@ export default (options = {}) => {
 
       columnHeights[target] += nodesHeights[index] + sizeDetail.gutter
     })
+  }
+
+  function isNode(obj) {
+    return !!(obj && typeof obj === 'object' && obj.nodeType === 1 && obj.nodeName)
   }
 
   // container helpers
