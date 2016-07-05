@@ -5,6 +5,7 @@ const sync     = require('browser-sync')
 const del      = require('del')
 const fs       = require('fs')
 const gulp     = require('gulp')
+const mkdirp   = require('mkdirp')
 const notifier = require('node-notifier')
 const rollup   = require('rollup')
 const babel    = require('rollup-plugin-babel')
@@ -116,9 +117,10 @@ gulp.task('watch', () => {
 // build and default tasks
 
 gulp.task('build', ['clean'], () => {
-  // create dist directories
-  fs.mkdirSync('dist')
-  fs.mkdirSync('dist/maps')
+
+  // create dist directories, if needed
+  mkdirp.sync('dist')
+  mkdirp.sync('dist/maps')
 
   // run the tasks
   gulp.start('js')
