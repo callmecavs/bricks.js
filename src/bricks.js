@@ -12,6 +12,8 @@ export default (options = {}) => {
   let columnTarget
   let columnHeights
 
+  let nodeHeight
+
   let nodes
   let nodesWidth
   let nodesHeights
@@ -119,7 +121,12 @@ export default (options = {}) => {
 
       element.setAttribute(packed, '')
 
-      columnHeights[columnTarget] += nodesHeights[index] + sizeDetail.gutter
+      // ignore nodes with no height
+      nodeHeight = nodesHeights[index]
+
+      if(nodeHeight) {
+        columnHeights[columnTarget] += nodeHeight + sizeDetail.gutter
+      }
     })
   }
 
