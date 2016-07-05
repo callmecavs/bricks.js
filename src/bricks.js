@@ -24,33 +24,19 @@ export default (options = {}) => {
   let nodesWidth
   let nodesHeights
 
-  // options
+  // resolve options
 
   const packed    = options.packed.indexOf('data-') === 0 ? options.packed : `data-${ options.packed }`
   const sizes     = options.sizes.slice().reverse()
   const position  = options.position !== false
 
-  // resolve container
+  const container = options.container.nodeType
+    ? options.container
+    : document.querySelector(options.container)
 
-  let container
-  let selectors
-
-  if(options.container.nodeType) {
-    // container option is a node
-    container = options.container
-
-    selectors = {
-      all: toArray(container.children),
-      new: toArray(container.children).filter(node => !node.hasAttribute(`${ packed }`))
-    }
-  } else {
-    // container option is a CSS selector
-    container = document.querySelector(options.container)
-
-    selectors = {
-      all: `${ options.container } > *`,
-      new: `${ options.container } > *:not([${ packed }])`
-    }
+  const selectors = {
+    all: toArray(container.children),
+    new: toArray(container.children).filter(node => !node.hasAttribute(`${ packed }`))
   }
 
   // series
