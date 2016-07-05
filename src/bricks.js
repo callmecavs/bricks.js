@@ -7,7 +7,7 @@ export default (options = {}) => {
 
   // globals
 
-  let persist           // updating or packing all elements?
+  let persist           // packing new elements, or all elements?
   let ticking           // for debounced resize
 
   let sizeIndex
