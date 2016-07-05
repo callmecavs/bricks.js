@@ -9,6 +9,7 @@ export default (options = {}) => {
   let sizeIndex
   let sizeDetail
 
+  let columnTarget
   let columnHeights
 
   let nodes
@@ -110,15 +111,15 @@ export default (options = {}) => {
 
   function setNodesStyles() {
     nodes.forEach((element, index) => {
-      const target = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
+      columnTarget = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
 
       element.style.position  = 'absolute'
-      element.style.top       = `${ columnHeights[target] }px`
-      element.style.left      = `${ (target * nodesWidth) + (target * sizeDetail.gutter) }px`
+      element.style.top       = `${ columnHeights[columnTarget] }px`
+      element.style.left      = `${ (columnTarget * nodesWidth) + (columnTarget * sizeDetail.gutter) }px`
 
       element.setAttribute(packed, '')
 
-      columnHeights[target] += nodesHeights[index] + sizeDetail.gutter
+      columnHeights[columnTarget] += nodesHeights[index] + sizeDetail.gutter
     })
   }
 
