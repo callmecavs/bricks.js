@@ -35,8 +35,8 @@ export default (options = {}) => {
     : document.querySelector(options.container)
 
   const selectors = {
-    all: toArray(container.children),
-    new: toArray(container.children).filter(node => !node.hasAttribute(`${ packed }`))
+    all: () => toArray(container.children),
+    new: () => toArray(container.children).filter(node => !node.hasAttribute(`${ packed }`))
   }
 
   // series
@@ -109,7 +109,7 @@ export default (options = {}) => {
   // node helpers
 
   function setNodes() {
-    nodes = toArray(persist ? selectors.new : selectors.all)
+    nodes = selectors[persist ? 'new' : 'all']()
   }
 
   function setNodesDimensions() {
