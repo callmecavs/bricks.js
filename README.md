@@ -54,11 +54,12 @@ Parameters passed to the constructor are detailed below.
 
 ## Parameters
 
-Note that all parameters are **required**:
+Note that all parameters, _except `position`_, are **required**:
 
 * A [container](#container) selector
 * A [packed](#packed) attribute
 * A [sizes](#sizes) array
+* A [position](#position) boolean
 
 ### container
 
@@ -108,6 +109,21 @@ const sizes = [
 
 const instance = Bricks({
   sizes: sizes
+})
+```
+
+### position
+
+A boolean, defaulting to `true`, indicating that:
+
+* the grid items should be positioned using `top` and `left`, or
+* if `false`, that the grid items should be positioned using `transform`
+
+```es6
+// default, 'true', shown below
+
+const instance = Bricks({
+  position: true
 })
 ```
 
