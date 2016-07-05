@@ -83,7 +83,7 @@ Note that the direct children of this element must be the grid items.
 
 ### packed
 
-An attribute added to items after they're positioned in the grid.
+An attribute added to items after they're positioned in the grid. If the attribute is not prefixed with `data-`, it will be added.
 
 ```es6
 const instance = Bricks({
@@ -91,7 +91,7 @@ const instance = Bricks({
 })
 ```
 
-Note that if the attribute is not prefixed with `data-`, it will be added.
+Note that Bricks uses this attribute to avoiding unnecessarily repositioning elements already in place if [`update`](#update) is called to accommodate dynamically added elements.
 
 ### sizes
 
