@@ -12,6 +12,8 @@ export default (options = {}) => {
   let columnTarget
   let columnHeights
 
+  let nodeTop
+  let nodeLeft
   let nodeHeight
 
   let nodes
@@ -23,6 +25,7 @@ export default (options = {}) => {
   const container = document.querySelector(options.container)
   const packed    = options.packed.indexOf('data-') === 0 ? options.packed : `data-${ options.packed }`
   const sizes     = options.sizes.slice().reverse()
+  const position  = options.position !== false
 
   const selectors = {
     all: `${ options.container } > *`,
@@ -116,8 +119,17 @@ export default (options = {}) => {
       columnTarget = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
 
       element.style.position  = 'absolute'
-      element.style.top       = `${ columnHeights[columnTarget] }px`
-      element.style.left      = `${ (columnTarget * nodesWidth) + (columnTarget * sizeDetail.gutter) }px`
+
+      nodeTop  = `${ columnHeights[columnTarget] }px`
+      nodeLeft = `${ (columnTarget * nodesWidth) + (columnTarget * sizeDetail.gutter) }px`
+
+      // support positioned elements (default) or transformed elements
+      if(position) {
+        element.style.top  = nodeTop
+        element.style.left = nodeLeft
+      } else {
+        element.style.transform = `translate3d(${ nodeLeft }, ${ nodeTop }, 0)`
+      }
 
       element.setAttribute(packed, '')
 
