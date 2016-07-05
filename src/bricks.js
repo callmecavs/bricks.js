@@ -73,9 +73,7 @@ export default (options = {}) => {
   // array helpers
 
   function toArray(input, scope = document) {
-    return typeof input === 'String'
-      ? chop.call(scope.querySelectorAll(input))
-      : chop.call(input)
+    return chop.call(input)
   }
 
   function fillArray(length) {
