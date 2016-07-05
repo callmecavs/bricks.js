@@ -38,6 +38,7 @@
     "browser-sync":                              "*",
     "del":                                       "*",
     "gulp":                                      "*",
+    "mkdirp":                                    "*",
     "node-notifier":                             "*",
     "rollup":                                    "*",
     "rollup-plugin-babel":                       "*",
