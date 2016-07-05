@@ -1,6 +1,10 @@
 import knot from 'knot.js'
 
 export default (options = {}) => {
+  // slice alias
+
+  const chop = Array.prototype.slice
+
   // globals
 
   let persist           // updating or packing all elements?
@@ -22,14 +26,31 @@ export default (options = {}) => {
 
   // options
 
-  const container = document.querySelector(options.container)
   const packed    = options.packed.indexOf('data-') === 0 ? options.packed : `data-${ options.packed }`
   const sizes     = options.sizes.slice().reverse()
   const position  = options.position !== false
 
-  const selectors = {
-    all: `${ options.container } > *`,
-    new: `${ options.container } > *:not([${ packed }])`
+  // resolve container
+
+  let container
+  let selectors
+
+  if(options.container.nodeType) {
+    // container option is a node
+    container = options.container
+
+    selectors = {
+      all: toArray(container.children),
+      new: toArray(container.children).filter(node => !node.hasAttribute(`${ packed }`))
+    }
+  } else {
+    // container option is a CSS selector
+    container = document.querySelector(options.container)
+
+    selectors = {
+      all: `${ options.container } > *`,
+      new: `${ options.container } > *:not([${ packed }])`
+    }
   }
 
   // series
@@ -65,8 +86,10 @@ export default (options = {}) => {
 
   // array helpers
 
-  function toArray(selector) {
-    return Array.prototype.slice.call(document.querySelectorAll(selector))
+  function toArray(input, scope = document) {
+    return typeof input === 'String'
+      ? chop.call(scope.querySelectorAll(input))
+      : chop.call(input)
   }
 
   function fillArray(length) {
