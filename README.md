@@ -56,10 +56,10 @@ Parameters passed to the constructor are detailed below.
 
 Note that all parameters, _except `position`_, are **required**:
 
-* A [container](#container) node, or CSS selector
+* A [container](#container) (node or CSS selector)
 * A [packed](#packed) attribute
 * A [sizes](#sizes) array
-* A [position](#position) boolean
+* A [position](#position) boolean (defaulting to `true`)
 
 ### container
 
@@ -81,7 +81,7 @@ const instance = Bricks({
 
 ### packed
 
-An attribute added to items after they're positioned in the grid. If the attribute is not prefixed with `data-`, it will be added.
+An attribute added to the grid items after they're positioned within the grid. If the attribute is not prefixed with `data-`, it will be added.
 
 ```es6
 // prefixed
@@ -93,12 +93,12 @@ const instance = Bricks({
 // unprefixed
 
 const instance = Bricks({
-  // becomes 'data-packed'
+  // becomes: 'data-packed'
   packed: 'packed'
 })
 ```
 
-Note that Bricks uses this attribute to avoiding unnecessarily repositioning grid items already in place. It's best to avoid manipulating it.
+Note that Bricks uses this attribute internally to avoiding unnecessarily repositioning grid items already in place. It's best to avoid manipulating it.
 
 ### sizes
 
@@ -134,10 +134,18 @@ A boolean, defaulting to `true`, indicating that the grid items should be positi
 If set to `false`, the grid items will be positioned using the `transform` CSS property.
 
 ```es6
-// default, 'true', shown below
+// default ('true')
+// grid items are positioned via the 'top' and 'left' properties
 
 const instance = Bricks({
   position: true
+})
+
+// explicitly 'false' (not any falsy value!)
+// grid items are positioned via the 'transform' property
+
+const instance = Bricks({
+  position: false
 })
 ```
 
