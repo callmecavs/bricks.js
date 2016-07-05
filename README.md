@@ -63,7 +63,7 @@ Note that all parameters, _except `position`_, are **required**:
 
 ### container
 
-A node, or CSS selector, that represents the grid wrapper.
+A node, or CSS selector, that represents the grid wrapper. The _direct children_ of this element must be the grid items.
 
 ```es6
 // passing a node
@@ -79,19 +79,26 @@ const instance = Bricks({
 })
 ```
 
-Note that the direct children of this element must be the grid items.
-
 ### packed
 
 An attribute added to items after they're positioned in the grid. If the attribute is not prefixed with `data-`, it will be added.
 
 ```es6
+// prefixed
+
 const instance = Bricks({
   packed: 'data-packed'
 })
+
+// unprefixed
+
+const instance = Bricks({
+  // becomes 'data-packed'
+  packed: 'packed'
+})
 ```
 
-Note that Bricks uses this attribute to avoiding unnecessarily repositioning elements already in place if [`update`](#update) is called to accommodate dynamically added elements.
+Note that Bricks uses this attribute to avoiding unnecessarily repositioning grid items already in place. It's best to avoid manipulating it.
 
 ### sizes
 
