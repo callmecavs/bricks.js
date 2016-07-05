@@ -63,7 +63,7 @@ Note that all parameters, _except `position`_, are **required**:
 
 ### container
 
-A node, or CSS selector, that matches the grid wrapper.
+A node, or CSS selector, that represents the grid wrapper.
 
 ```es6
 // passing a node
@@ -83,7 +83,7 @@ Note that the direct children of this element must be the grid items.
 
 ### packed
 
-An attribute added to items already positioned within the grid.
+An attribute added to items after they're positioned in the grid.
 
 ```es6
 const instance = Bricks({
@@ -122,10 +122,9 @@ const instance = Bricks({
 
 ### position
 
-A boolean, defaulting to `true`, indicating that:
+A boolean, defaulting to `true`, indicating that the grid items should be positioned using the `top` and `left` CSS properties.
 
-* the grid items should be positioned using `top` and `left`, or
-* if `false`, that the grid items should be positioned using `transform`
+If set to `false`, the grid items will be positioned using the `transform` CSS property.
 
 ```es6
 // default, 'true', shown below
@@ -135,7 +134,7 @@ const instance = Bricks({
 })
 ```
 
-Positioning using `transform` is done via `translate3d` for optimal performance. Coupled with a CSS `transition`, this option allows for easily animating the grid items into place.
+Positioning using `transform` is done via `translate3d` for optimal performance. Coupled with a CSS `transition`, this option allows for smoothly animating the grid items into place.
 
 ## API / Events
 
