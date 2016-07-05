@@ -70,9 +70,11 @@ gulp.task('js', () => {
 
       // write the attribution
       fs.writeFileSync(dist, attribution)
+      fs.writeFileSync('site/src/js/bricks.min.js', attribution)
 
       // write the JS and sourcemap
       fs.appendFileSync(dist, files.code)
+      fs.appendFileSync('site/src/js/bricks.min.js', files.code)
       fs.writeFileSync('dist/maps/bricks.js.map', files.map.toString())
     })
 })
