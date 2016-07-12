@@ -18,10 +18,11 @@ export default (options = {}) => {
 
   let nodeTop
   let nodeLeft
+  let nodeWidth
   let nodeHeight
 
   let nodes
-  let nodesWidth
+  let nodesWidths
   let nodesHeights
 
   // resolve options
@@ -113,11 +114,12 @@ export default (options = {}) => {
   }
 
   function setNodesDimensions() {
+    // exit if empty container
     if(nodes.length === 0) {
       return
     }
 
-    nodesWidth   = nodes[0].clientWidth
+    nodesWidths  = nodes.map(element => element.clientWidth)
     nodesHeights = nodes.map(element => element.clientHeight)
   }
 
@@ -128,7 +130,7 @@ export default (options = {}) => {
       element.style.position  = 'absolute'
 
       nodeTop  = `${ columnHeights[columnTarget] }px`
-      nodeLeft = `${ (columnTarget * nodesWidth) + (columnTarget * sizeDetail.gutter) }px`
+      nodeLeft = `${ (columnTarget * nodesWidths[index]) + (columnTarget * sizeDetail.gutter) }px`
 
       // support positioned elements (default) or transformed elements
       if(position) {
@@ -140,10 +142,11 @@ export default (options = {}) => {
 
       element.setAttribute(packed, '')
 
-      // ignore nodes with no height
+      // ignore nodes with no width and/or height
+      nodeWidth  = nodesWidths[index]
       nodeHeight = nodesHeights[index]
 
-      if(nodeHeight) {
+      if(nodeWidth && nodeHeight) {
         columnHeights[columnTarget] += nodeHeight + sizeDetail.gutter
       }
     })
