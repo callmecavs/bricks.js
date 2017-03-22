@@ -1,24 +1,28 @@
 {
   "name":        "bricks.js",
-  "version":     "1.7.1",
   "description": "A blazing fast masonry layout generator for fixed width elements.",
-  "homepage":    "https://github.com/callmecavs/bricks.js",
-  "main":        "dist/bricks.min.js",
-  "jsnext:main": "src/bricks.js",
 
-  "author":  "Michael Cavalea",
+  "main":        "dist/bricks.js",
+  "module":      "dist/bricks.module.js",
+  "jsnext:main": "dist/bricks.module.js",
+
+  "version": "1.7.1",
   "license": "MIT",
 
-  "scripts": {
-    "site": "git subtree push --prefix site/dist origin gh-pages"
+  "repository": "callmecavs/bricks.js",
+
+  "author": {
+    "name":  "Michael Cavalea",
+    "email": "callmecavs@gmail.com",
+    "url":   "http://callmecavs.com/"
   },
 
-  "repository": {
-    "type": "git",
-    "url":  "https://github.com/callmecavs/bricks.js"
-  },
-  "bugs": {
-    "url": "https://github.com/callmecavs/bricks.js/issues"
+  "scripts": {
+    "prebuild":   "eslint src",
+    "build":      "rollup -c",
+    "dev":        "rollup -c -w -m inline",
+    "prepublish": "npm run build",
+    "server":     "python -m SimpleHTTPServer 3000"
   },
 
   "keywords": [
@@ -29,21 +33,21 @@
   ],
 
   "dependencies": {
-    "knot.js": "^1.1.1"
+    "knot.js": "^1.1.5"
   },
 
   "devDependencies": {
-    "babel-preset-es2015-rollup":                "*",
-    "babel-plugin-transform-object-rest-spread": "*",
-    "browser-sync":                              "*",
-    "del":                                       "*",
-    "gulp":                                      "*",
-    "mkdirp":                                    "*",
-    "node-notifier":                             "*",
-    "rollup":                                    "*",
-    "rollup-plugin-babel":                       "*",
-    "rollup-plugin-commonjs":                    "*",
-    "rollup-plugin-node-resolve":                "*",
-    "rollup-plugin-uglify":                      "*"
+    "babel-eslint": "^7.1.1",
+    "babel-preset-env": "^1.2.2",
+    "chai": "^3.5.0",
+    "eslint": "^3.13.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "mocha": "^3.2.0",
+    "rollup": "^0.41.1",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-watch": "^3.2.2"
   }
 }
