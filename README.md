@@ -1,6 +1,6 @@
 # Bricks.js
 
-[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg?style=flat-square)](https://www.npmjs.com/package/bricks.js)
+[![Bricks.js on NPM](https://img.shields.io/npm/v/bricks.js.svg?style=flat-square)](https://www.npmjs.com/package/bricks.js) [![Bricks.js Downloads on NPM](https://img.shields.io/npm/dm/bricks.js.svg?style=flat-square)](https://www.npmjs.com/package/bricks.js) [![Standard JavaScript Style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
 > Momma said, "Stay patient." - Bricks, DJ Carnage
 
@@ -240,6 +240,6 @@ To support older browsers, consider including [polyfills/shims](https://github.c
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT). © 2016 Michael Cavalea
+[MIT](https://opensource.org/licenses/MIT). © 2017 Michael Cavalea
 
 [![Built With Love](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
