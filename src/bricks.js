@@ -156,7 +156,7 @@ export default (options = {}) => {
 
   function setContainerStyles() {
     container.style.position = 'relative'
-    container.style.width    = `${ sizeDetail.columns * nodesWidth + (sizeDetail.columns - 1) * sizeDetail.gutter }px`
+    container.style.width    = `${ sizeDetail.columns * nodeWidth + (sizeDetail.columns - 1) * sizeDetail.gutter }px`
     container.style.height   = `${ Math.max.apply(Math, columnHeights) - sizeDetail.gutter }px`
   }
 
