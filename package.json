@@ -6,7 +6,7 @@
   "module":      "dist/bricks.module.js",
   "jsnext:main": "dist/bricks.module.js",
 
-  "version": "1.7.1",
+  "version": "1.8.0",
   "license": "MIT",
 
   "repository": "callmecavs/bricks.js",
