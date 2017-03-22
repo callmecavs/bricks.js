@@ -18,11 +18,14 @@
   },
 
   "scripts": {
-    "prebuild":   "eslint src",
     "build":      "rollup -c",
     "dev":        "rollup -c -w -m inline",
-    "prepublish": "npm run build",
-    "server":     "python -m SimpleHTTPServer 3000"
+    "lint":       "eslint src",
+    "prebuild":   "rm -rf dist",
+    "prepublish": "npm run test",
+    "pretest":    "npm run build",
+    "server":     "python -m SimpleHTTPServer 3000",
+    "test":       "npm run lint"
   },
 
   "keywords": [
