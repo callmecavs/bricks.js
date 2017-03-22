@@ -5,12 +5,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .box {
+        width: 200px;
+        background-color: black;
+      }
+
+      .container {
+        width: 800px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    </style>
   </head>
   <body>
+    <div class="container"></div>
+
     <script src="../dist/bricks.js"></script>
     <script>
       console.log('Module assigned to window.Bricks. Logged below:')
       console.log(Bricks)
+    </script>
+    <script>
+      const container = document.querySelector('.container')
+
+      // insert 100 divs with same width, but random height
+      for (var i = 0; i < 100; i++) {
+        const div = document.createElement('div')
+        div.classList.add('box')
+        div.style.width = '200px'
+        div.style.height = Math.floor(Math.random() * 500) + 'px'
+        container.appendChild(div)
+      }
+
+      const instance = Bricks({
+        container: '.container',
+        packed: 'data-packed',
+        position:  true,
+        sizes: [
+          { columns: 2, gutter: 10 },
+          { mq: '768px', columns: 3, gutter: 25 },
+          { mq: '1024px', columns: 4, gutter: 50 }
+        ]
+      })
+        .resize(true)
+        .pack()
     </script>
   </body>
 </html>
