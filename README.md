@@ -112,7 +112,7 @@ When defining your sizes, note the following:
 * The size without the `mq` property is assumed to be your **smallest breakpoint, and must appear first**
 
 ```es6
-// mq      - the minimum viewport width (any unit)
+// mq      - the minimum viewport width (String CSS unit: em, px, rem)
 // columns - the number of vertical columns
 // gutter  - the space (in px) between the columns and grid items
 
