@@ -1,0 +1,23 @@
+{
+  "name": "bricks.js",
+  "description": "A blazing fast masonry layout generator for fixed width elements.",
+  "main": "dist/bricks.min.js",
+  "authors": [
+    "Michael Cavalea"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "grid",
+    "masonry",
+    "layout",
+    "packing"
+  ],
+  "homepage": "https://github.com/callmecavs/bricks.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
