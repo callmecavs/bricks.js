@@ -123,13 +123,12 @@ const bricks = (options = {}) => {
     nodes.forEach((element, index) => {
       columnTarget = columnHeights.indexOf(Math.min.apply(Math, columnHeights))
 
-      element.style.position = 'absolute'
-
       nodeTop = `${columnHeights[columnTarget]}px`
       nodeLeft = `${(columnTarget * nodesWidths[index]) + (columnTarget * sizeDetail.gutter)}px`
 
       // support positioned elements (default) or transformed elements
       if (position) {
+        element.style.position = 'absolute'
         element.style.top = nodeTop
         element.style.left = nodeLeft
       } else {
