@@ -116,7 +116,7 @@ const bricks = (options = {}) => {
     }
 
     nodesWidths = nodes.map(element => element.clientWidth)
-    nodesHeights = nodes.map(element => element.clientHeight)
+    nodesHeights = nodes.map(element => Math.ceil(element.getBoundingClientRect().height))
   }
 
   function setNodesStyles () {
